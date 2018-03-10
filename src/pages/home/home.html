@@ -1,4 +1,4 @@
- <ion-header>
+<ion-header>
   <ion-navbar color="secondary">
     <ion-title>
       Application employment
@@ -6,32 +6,43 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class= "background" >
- <div   class = "bg">
-  <p class  =  "wlc">
-    WELCOME
-  </p>
+<ion-content padding class="background">
+  <!--  <div class="bg">
+      <p class="wlc">
+        WELCOME
+      </p>
 
-</div>
-  <ion-img width="100%" height="50%" src="/assets/imgs/empleo.png"></ion-img>
+    </div>-->
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 justify-content-center>WELCOME</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-img width="80" height="80" src="/assets/imgs/empleo.png">
+        </ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-<div class= "inputs" >
+
+  <div class="inputs">
 
     <ion-list>
-  <ion-item>
-    <ion-label floating>Username</ion-label>
-    <ion-input type="text"  [(ngModel)]="user.email"></ion-input>
-  </ion-item>
+      <ion-item>
+        <ion-label floating>Username</ion-label>
+        <ion-input type="text" [(ngModel)]="user.email"></ion-input>
+      </ion-item>
 
-  <ion-item>
-    <ion-label floating>Password</ion-label>
-    <ion-input type="password" [(ngModel)]="user.password"></ion-input>
-  </ion-item>
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+      </ion-item>
     </ion-list>
-</div>
+  </div>
 
 
- <button ion-button full class="btn" (click)= "login(user)"> Login </button>
- <button ion-button full class="btn" (click)= "register(user)"> register </button>
+  <button ion-button full class="btn" (click)="login(user)"> Login</button>
+  <button ion-button full class="btn" (click)="register(user)"> register</button>
 
 </ion-content>
