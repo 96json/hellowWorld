@@ -18,10 +18,16 @@ page-home {
     text-align: center ;
     font-family:cursive ;
 }
-   
+   .p1{
+
+    text-align: center ;
+
+    font-size:40px;
+
+   }
 .inputs {
 
-    margin-top :30%;
+    margin-top :50px;
 
 }
 
@@ -43,6 +49,11 @@ ion-item {
 .btn   {
     background: transparent!important;
     border: 1px solid #fff!important;
+
+}
+ion-img{
+
+    background: transparent !important
 
 }
 
