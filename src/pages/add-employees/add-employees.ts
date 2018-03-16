@@ -30,29 +30,19 @@ export class AddEmployeesPage   {
   
   employee = {} as employeeitem;
 
-//EmployeesItemRef$: FirebaseListObservable<EmployeeItem[]> ;
-//private database: AngularFireDatabase
+
 
   constructor(private employeeService:EmployeeListService, public navCtrl: NavController, public navParams: NavParams ) {
 
-    //this.EmployeesItemRef$ = this.database.list('Employee-list');
+   
   }
 
-  /*ionViewDidLoad() {
-    console.log('ionViewDidLoad AddEmployeesPage');
-  }*/
+ 
   addOneEmployee(employee : employeeitem){
 this.employeeService.addEmployeeItem(employee).then(ref=>{
   this.navCtrl.push (EmployeesListPage , {key:ref.key});
 })
 
-
-/*this.EmployeesItemRef$.push({
-itemName:this.EmployeeItem.itemName,
-itemNationality:this.EmployeeItem.itemNationality
-
-
-});*/
 
   }
 }

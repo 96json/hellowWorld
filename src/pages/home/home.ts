@@ -4,6 +4,7 @@ import {UsersPage} from '../users/users';
 import {EmployeesListPage} from '../employees-list/employees-list';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {ToastController} from 'ionic-angular';
+import {RegisterPage} from '../register/register';
 
 interface User {
   email: string;
@@ -44,28 +45,8 @@ export class HomePage {
   }
 
   register(user: User) {
-    try {
-      const result = this.afAuth.auth.createUserWithEmailAndPassword(
-        user.email,
-        user.password
-      );
-      if (result) {
-        let toast = this.toastCtrl.create({
-          message: 'User was added successfully',
-          duration: 3000,
-          position: 'top'
-        });
+   
 
-        toast.onDidDismiss(() => {
-          console.log('Dismissed toast');
-        });
-
-        toast.present();
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
-
-
+    this.navCtrl.push(RegisterPage);
+}
 }

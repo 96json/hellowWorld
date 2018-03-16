@@ -1,36 +1,9 @@
-page-home {
+page-register {
     .background {
         background: linear-gradient(160deg,#fffff0  30%,#f8d879  70%);
     }
-   .bg{
-        
-   
-      //background-image: url('../assets/imgs/Desert.jpg');
-      //background-size: 100%;
-      height:25%;
-     
+ 
     
-   }
-   .wlc{
-    color : #353331  ;
-    font-style:bold;
-    font-size:30px;
-    text-align: center ;
-    font-family:cursive ;
-}
-   .p1{
-
-    text-align: center ;
-
-    font-size:40px;
-
-   }
-.inputs {
-
-    margin-top :50px;
-
-}
-
 ion-item {
     background: transparent!important;
     border: 1px solid #fff!important;
@@ -51,11 +24,7 @@ ion-item {
     border: 1px solid #fff!important;
 
 }
-ion-img{
 
-    background: transparent !important
-
-}
 
 
 }

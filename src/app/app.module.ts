@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { UsersPage } from '../pages/users/users';
+import { RegisterPage } from '../pages/register/register';
 import{enviroment} from './firebase.credentials';
 import { EmployeesListPage } from '../pages/employees-list/employees-list';
 import { AddEmployeesPage } from '../pages/add-employees/add-employees';
@@ -22,7 +23,8 @@ import {EmployeeListService} from './../services/employees-list/employees-list.s
     HomePage,
     UsersPage,
     EmployeesListPage,
-    AddEmployeesPage
+    AddEmployeesPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import {EmployeeListService} from './../services/employees-list/employees-list.s
     HomePage,
     UsersPage,
     EmployeesListPage,
-    AddEmployeesPage
+    AddEmployeesPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
