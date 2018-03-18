@@ -5,7 +5,7 @@ import {EmployeesListPage} from '../employees-list/employees-list';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {ToastController} from 'ionic-angular';
 import {RegisterPage} from '../register/register';
-
+import {UsersTabsPage } from '../users-tabs/users-tabs';
 interface User {
   email: string;
   password: string;
@@ -36,7 +36,7 @@ export class HomePage {
 
     this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
       .then(() => {
-        this.navCtrl.push(EmployeesListPage);
+        this.navCtrl.push(UsersTabsPage);
       }).catch((e) => {
       console.error(e);
     })
