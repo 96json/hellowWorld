@@ -7,29 +7,29 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title class = "title" >OFFICES</ion-title>
+    <ion-title class="title">OFFICES</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding class = "card-background-page">
-<ion-list>
-  <ion-list-header>
-  employees
-  </ion-list-header>
-<ion-item *ngFor = "let item of employeelist$ | async" > 
-    <ion-card>
-        <img src="assets/imgs/m3.png"/>
-        <div class="card-title">{{item.FullName  }} </div>
-        <div class="card-subtitle">{{item.age  }}</div>
+<ion-content padding class="card-background-page">
+  <ion-list>
+    <ion-list-header>
+      employees
+    </ion-list-header>
+    <ion-item *ngFor="let item of employeelist$ | async">
+      <ion-card>
+        <img [src]="item.image"/>
       </ion-card>
-{{item.FullName  }}  , {{item.age }}
+      <ion-row>
+      {{item.FullName }} , {{item.age }}
+      </ion-row>
 
 
-</ion-item>
+    </ion-item>
 
 
-</ion-list>
+  </ion-list>
 
 </ion-content>

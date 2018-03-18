@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 
-import { EmployeeListService } from '../../services/employees-list/employees-list.services';
-import { AngularFireDatabase } from "angularfire2/database";
+import {EmployeeListService} from '../../services/employees-list/employees-list.services';
+import {AngularFireDatabase} from "angularfire2/database";
 import {Observable} from 'rxjs/Observable';
+
 /**
  * Generated class for the OfficesMenuPage page.
  *
@@ -11,31 +12,33 @@ import {Observable} from 'rxjs/Observable';
  * Ionic pages and navigation.
  */
 interface employeeitem {
-  key?:string;
-  FullName:string;
+  key?: string;
+  FullName: string;
   age: number;
-  salary:number;
+  salary: number;
 }
-@IonicPage()
+
+//@IonicPage()
 @Component({
   selector: 'page-offices-menu',
   templateUrl: 'offices-menu.html',
 })
 export class OfficesMenuPage {
 
-employeelist$:Observable<employeeitem[]>;
+  employeelist$: Observable<employeeitem[]>;
 
-constructor(public navCtrl: NavController, public navParams: NavParams,private employees:EmployeeListService) {
- this.employeelist$ =this.employees.getEmployeeList()
-.snapshotChanges().map(
-  changes => {
-    return changes.map(c=> ({
-      key:c.payload.key,
-       ...c.payload.val(),
-    }));
+
+  constructor(public navCtrl: NavController, private employees: EmployeeListService) {
+    this.employeelist$ = this.employees.getEmployeeList()
+      .snapshotChanges().map(
+        changes => {
+          return changes.map(c => ({
+            key: c.payload.key,
+            ...c.payload.val(),
+          }));
+        }
+      );
   }
-); 
- }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OfficesMenuPage');
