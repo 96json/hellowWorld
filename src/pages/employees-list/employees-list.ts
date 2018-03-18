@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AddEmployeesPage } from '../add-employees/add-employees';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AddEmployeesPage} from '../add-employees/add-employees';
+
 /**
  * Generated class for the EmployeesListPage page.
  *
@@ -18,14 +19,14 @@ export class EmployeesListPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
- /* ionViewDidLoad() {
-    console.log('ionViewDidLoad EmployeesListPage');
-  }*/
+  /* ionViewDidLoad() {
+     console.log('ionViewDidLoad EmployeesListPage');
+   }*/
 
-  NavtoAddEmployees(){
+  NavtoAddEmployees() {
 
-    this.navCtrl.push (AddEmployeesPage);
-    
+    this.navCtrl.push(AddEmployeesPage);
+
   }
 
 }

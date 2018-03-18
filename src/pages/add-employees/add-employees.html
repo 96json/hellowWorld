@@ -24,14 +24,23 @@
 
     <ion-label floating > Employee age  </ion-label>
     <ion-input type = "number"  [(ngModel)]='employee.age'  > Employee age  </ion-input>
-   
+
   </ion-item>
   <ion-item>
 
     <ion-label floating > Employee salary  </ion-label>
     <ion-input type = "number"  [(ngModel)]='employee.salary'  > Employee salary  </ion-input>
-   
+
   </ion-item>
+  <ion-content padding>
+    <ion-row class="center">
+      <button ion-button (click)="getPicture(0)">Show Album</button>
+    </ion-row>
+    <ion-card>
+      <img [src]="captureDataUrl" *ngIf="captureDataUrl"/>
+      <button ion-button (click)="upload()" *ngIf="captureDataUrl">Upload to Firebase!</button>
+    </ion-card>
+  </ion-content>
   <button ion-button full (click)="addOneEmployee(employee)"> ADD </button>
 
   {{ employee | json }}

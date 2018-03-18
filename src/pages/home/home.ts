@@ -8,6 +8,7 @@ import {ToastController} from 'ionic-angular';
 import {RegisterPage} from '../register/register';
 import {UsersTabsPage} from '../users-tabs/users-tabs';
 import {OfficesMenuPage} from '../offices-menu/offices-menu';
+import {AddEmployeesPage} from "../add-employees/add-employees";
 
 interface User {
   email: string;
@@ -29,7 +30,7 @@ export class HomePage {
 
   openUsers() {
 
-    this.navCtrl.push(OfficesMenuPage);
+    this.navCtrl.push(AddEmployeesPage);
 
 
   }
@@ -41,6 +42,7 @@ export class HomePage {
         this.openUsers()
         return;
       }
+      console.log('not logged')
 
     });
 
