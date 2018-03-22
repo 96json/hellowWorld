@@ -60,7 +60,7 @@ export class AddEmployeesPage {
         // Do something here when the data is succesfully uploaded!
         this.employeeService.addEmployeeItem(employee)
           .then(ref => {
-            this.navCtrl.push(OfficesMenuPage, {key: ref.key});
+            this.navCtrl.setRoot(OfficesMenuPage, {key: ref.key});
           });
         this.showSuccesfulUploadAlert();
       });

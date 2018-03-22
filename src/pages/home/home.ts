@@ -30,7 +30,7 @@ export class HomePage {
 
   openUsers() {
 
-    this.navCtrl.push(OfficesMenuPage);
+    this.navCtrl.setRoot(OfficesMenuPage);
 
 
   }
