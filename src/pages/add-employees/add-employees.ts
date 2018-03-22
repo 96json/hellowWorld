@@ -1,10 +1,10 @@
-import {Component,Input} from '@angular/core';
-import {IonicPage, NavController, NavParams,AlertController} from 'ionic-angular';
+import {Component, Input} from '@angular/core';
+import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
 import {EmployeeListService} from '../../services/employees-list/employees-list.services';
 import {EmployeesListPage} from '../employees-list/employees-list';
-import { Camera, CameraOptions } from 'ionic-native';
+import {Camera, CameraOptions} from 'ionic-native';
 import firebase from 'firebase';
-
+import {OfficesMenuPage} from "../offices-menu/offices-menu";
 
 
 //mport {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database-deprecated';
@@ -21,7 +21,7 @@ interface employeeitem {
   FullName: string;
   age: number;
   salary: number;
-  image:string
+  image: string
 }
 
 @Component({
@@ -45,13 +45,30 @@ export class AddEmployeesPage {
 
 
   addOneEmployee(employee: employeeitem) {
-    this.employeeService.addEmployeeItem(employee).then(ref => {
-      this.navCtrl.push(EmployeesListPage, {key: ref.key});
-    })
+
+    let storageRef = firebase.storage().ref();
+    console.log(storageRef)
+    // Create a timestamp as filename
+    const filename = Math.floor(Date.now() / 1000);
+
+    // Create a reference to 'images/todays-date.jpg'
+    const imageRef = storageRef.child(`employees-list/${filename}.jpg`);
+
+    imageRef.putString(this.captureDataUrl, firebase.storage.StringFormat.DATA_URL)
+      .then((snapshot) => {
+        this.employee.image = snapshot.downloadURL;
+        // Do something here when the data is succesfully uploaded!
+        this.employeeService.addEmployeeItem(employee)
+          .then(ref => {
+            this.navCtrl.push(OfficesMenuPage, {key: ref.key});
+          });
+        this.showSuccesfulUploadAlert();
+      });
+
 
   }
 
-  getPicture(sourceType){
+  getPicture(sourceType) {
     const cameraOptions: CameraOptions = {
       quality: 50,
       destinationType: Camera.DestinationType.DATA_URL,
@@ -68,25 +85,11 @@ export class AddEmployeesPage {
       });
   }
 
-  upload() {
-    let storageRef = firebase.storage().ref();
-    // Create a timestamp as filename
-    const filename = Math.floor(Date.now() / 1000);
-
-    // Create a reference to 'images/todays-date.jpg'
-    const imageRef = storageRef.child(`employees-list/${filename}.jpg`);
-
-    imageRef.putString(this.captureDataUrl, firebase.storage.StringFormat.DATA_URL)
-      .then((snapshot)=> {
-        // Do something here when the data is succesfully uploaded!
-        this.showSuccesfulUploadAlert();
-      });
-  }
 
   showSuccesfulUploadAlert() {
     let alert = this.alertCtrl.create({
       title: 'Uploaded!',
-      subTitle: 'Picture is uploaded to Firebase',
+      subTitle: 'Image load to database',
       buttons: ['OK']
     });
     alert.present();

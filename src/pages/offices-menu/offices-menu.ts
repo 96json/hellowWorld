@@ -4,6 +4,7 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {EmployeeListService} from '../../services/employees-list/employees-list.services';
 import {AngularFireDatabase} from "angularfire2/database";
 import {Observable} from 'rxjs/Observable';
+import {AddEmployeesPage} from "../add-employees/add-employees";
 
 /**
  * Generated class for the OfficesMenuPage page.
@@ -42,6 +43,13 @@ export class OfficesMenuPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OfficesMenuPage');
+  }
+
+
+  NavtoAddEmployees() {
+
+    this.navCtrl.push(AddEmployeesPage);
+
   }
 
 }
