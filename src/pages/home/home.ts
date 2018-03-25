@@ -3,8 +3,12 @@ import {NavController} from 'ionic-angular';
 import {UsersPage} from '../users/users';
 import {EmployeesListPage} from '../employees-list/employees-list';
 import {AngularFireAuth} from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 import {ToastController} from 'ionic-angular';
 import {RegisterPage} from '../register/register';
+import {UsersTabsPage} from '../users-tabs/users-tabs';
+import {OfficesMenuPage} from '../offices-menu/offices-menu';
+import {AddEmployeesPage} from "../add-employees/add-employees";
 
 interface User {
   email: string;
@@ -22,12 +26,25 @@ export class HomePage {
   constructor(private afAuth: AngularFireAuth, public navCtrl: NavController, private toastCtrl: ToastController) {
 
   }
-
   user = {} as User;
 
   openUsers() {
 
-    this.navCtrl.push(EmployeesListPage);
+    this.navCtrl.setRoot(OfficesMenuPage);
+
+
+  }
+
+  ionViewDidLoad() {
+
+    this.afAuth.authState.subscribe((user: firebase.User) => {
+      if (user) {
+        this.openUsers()
+        return;
+      }
+      console.log('not logged')
+
+    });
 
 
   }
@@ -36,7 +53,7 @@ export class HomePage {
 
     this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
       .then(() => {
-        this.navCtrl.push(EmployeesListPage);
+        this.openUsers()
       }).catch((e) => {
       console.error(e);
     })
@@ -45,8 +62,8 @@ export class HomePage {
   }
 
   register(user: User) {
-   
+
 
     this.navCtrl.push(RegisterPage);
-}
+  }
 }

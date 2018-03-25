@@ -15,24 +15,34 @@
 
 <ion-content padding>
 
-<ion-item>
-    [(ngModel)]="Employeeitem.itemName"
-  <ion-label floating > Employee name  </ion-label>
-  <ion-input type = "text"   [(ngModel)]="employee.FullName" > Employee name  </ion-input>
-</ion-item>
-<ion-item>
-
-    <ion-label floating > Employee age  </ion-label>
-    <ion-input type = "number"  [(ngModel)]='employee.age'  > Employee age  </ion-input>
-   
+  <ion-item>
+    <ion-label floating> Employee name</ion-label>
+    <ion-input type="text" [(ngModel)]="employee.FullName"> Employee name</ion-input>
   </ion-item>
   <ion-item>
 
-    <ion-label floating > Employee salary  </ion-label>
-    <ion-input type = "number"  [(ngModel)]='employee.salary'  > Employee salary  </ion-input>
-   
+    <ion-label floating> Employee age</ion-label>
+    <ion-input type="number" [(ngModel)]='employee.age'> Employee age</ion-input>
+
   </ion-item>
-  <button ion-button full (click)="addOneEmployee(employee)"> ADD </button>
+  <ion-item>
+
+    <ion-label floating> Employee salary</ion-label>
+    <ion-input type="number" [(ngModel)]='employee.salary'> Employee salary</ion-input>
+
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" [(ngModel)]='employee.image' disabled="true">url image</ion-input>
+  </ion-item>
+
+  <ion-row class="center" *ngIf="!captureDataUrl">
+    <button ion-button (click)="getPicture(0)">Show Album</button>
+  </ion-row>
+  <ion-card>
+    <img [src]="captureDataUrl" *ngIf="captureDataUrl" width="60" height="120"/>
+  </ion-card>
+  <button ion-button full (click)="addOneEmployee(employee)"> ADD</button>
+
 
   {{ employee | json }}
 </ion-content>

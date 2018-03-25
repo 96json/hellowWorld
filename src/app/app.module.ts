@@ -4,6 +4,10 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import {PapersinfoPage} from  '../pages/papersinfo/papersinfo';
+import {OfficesMenuPage} from  '../pages/offices-menu/offices-menu';
+import {MyRequestsPage} from  '../pages/my-requests/my-requests';
+import {UsersTabsPage } from '../pages/users-tabs/users-tabs';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { UsersPage } from '../pages/users/users';
@@ -24,7 +28,11 @@ import {EmployeeListService} from './../services/employees-list/employees-list.s
     UsersPage,
     EmployeesListPage,
     AddEmployeesPage,
-    RegisterPage
+    RegisterPage,
+    PapersinfoPage,
+    OfficesMenuPage,
+    MyRequestsPage,
+    UsersTabsPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +49,11 @@ import {EmployeeListService} from './../services/employees-list/employees-list.s
     UsersPage,
     EmployeesListPage,
     AddEmployeesPage,
-    RegisterPage
+    RegisterPage,
+    PapersinfoPage,
+    OfficesMenuPage,
+    MyRequestsPage,
+    UsersTabsPage
   ],
   providers: [
     StatusBar,
