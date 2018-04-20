@@ -15,12 +15,14 @@ import { RegisterPage } from '../pages/register/register';
 import{enviroment} from './firebase.credentials';
 import { EmployeesListPage } from '../pages/employees-list/employees-list';
 import { AddEmployeesPage } from '../pages/add-employees/add-employees';
+import {EditEmployeesPage}from "../pages/edit-employees/edit-employees";
 import {AngularFireModule } from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database'; 
 import { AngularFireAuthModule } from 'angularfire2/auth'
 import {AngularFireAuth} from "angularfire2/auth";
 import {EmployeeListService} from './../services/employees-list/employees-list.services';
-
+import { FcmProvider } from '../providers/fcm/fcm';
+import { SMS } from '@ionic-native/sms';
 @NgModule({
   declarations: [
     MyApp,
@@ -59,7 +61,9 @@ import {EmployeeListService} from './../services/employees-list/employees-list.s
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    EmployeeListService
+    EmployeeListService,
+    FcmProvider,
+    SMS
   ]
 })
 export class AppModule {}

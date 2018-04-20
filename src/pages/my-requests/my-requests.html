@@ -14,5 +14,17 @@
 
 
 <ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>telephone</ion-label>
+      <ion-input type="tel" [(ngModel)]="phoneNumber"></ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label floating>Messagebody</ion-label>
+      <ion-input type="text" [(ngModel)]="Message"></ion-input>
+    </ion-item>
+  </ion-list>
+  
+  <button ion-button full (click)= "sendMessage()" > SEND </button>
 </ion-content>

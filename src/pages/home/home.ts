@@ -9,6 +9,9 @@ import {RegisterPage} from '../register/register';
 import {UsersTabsPage} from '../users-tabs/users-tabs';
 import {OfficesMenuPage} from '../offices-menu/offices-menu';
 import {AddEmployeesPage} from "../add-employees/add-employees";
+import {MyRequestsPage} from "../my-requests/my-requests";
+import {tap} from 'rxjs/operators';
+import {FcmProvider} from '../../providers/fcm/fcm';
 
 interface User {
   email: string;
@@ -30,7 +33,7 @@ export class HomePage {
 
   openUsers() {
 
-    this.navCtrl.setRoot(OfficesMenuPage);
+    this.navCtrl.setRoot(UsersTabsPage);
 
 
   }

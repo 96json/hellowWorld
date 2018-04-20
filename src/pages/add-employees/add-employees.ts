@@ -21,7 +21,13 @@ interface employeeitem {
   FullName: string;
   age: number;
   salary: number;
-  image: string
+  image: string;
+  Country: string;
+  ExperienceInYears:number;
+  Description:string;
+  Available:string;
+  kids:string;
+
 }
 
 @Component({
@@ -49,7 +55,8 @@ export class AddEmployeesPage {
     let storageRef = firebase.storage().ref();
     console.log(storageRef)
     // Create a timestamp as filename
-    const filename = Math.floor(Date.now() / 1000);
+    //const filename = Math.floor(Date.now() / 1000);
+    const filename = this.employee.FullName + this.employee.age;
 
     // Create a reference to 'images/todays-date.jpg'
     const imageRef = storageRef.child(`employees-list/${filename}.jpg`);
@@ -74,7 +81,9 @@ export class AddEmployeesPage {
       destinationType: Camera.DestinationType.DATA_URL,
       encodingType: Camera.EncodingType.JPEG,
       mediaType: Camera.MediaType.PICTURE,
-      sourceType: sourceType
+      sourceType: sourceType,
+      allowEdit:true,
+      correctOrientation:true
     };
 
     Camera.getPicture(cameraOptions)

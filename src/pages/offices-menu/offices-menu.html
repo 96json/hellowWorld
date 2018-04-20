@@ -9,8 +9,8 @@
   <ion-navbar>
     <ion-title class="title">OFFICES</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="NavtoAddEmployees()" >
-        <ion-icon name = "add"></ion-icon>
+      <button ion-button icon-only (click)="NavtoAddEmployees()">
+        <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -18,18 +18,33 @@
 </ion-header>
 
 
-<ion-content padding class="card-background-page">
+<ion-content class="card-background-page">
   <ion-list>
     <ion-list-header>
       employees
     </ion-list-header>
-    <ion-item *ngFor="let item of employeelist$ | async">
+    <ion-item *ngFor="let item of employeelist$ | async"text-wrap>
       <ion-card>
-        <img [src]="item.image"/>
+        <ion-item>
+          <ion-avatar item-start>
+            <img [src]="item.image">
+          </ion-avatar>
+          <h2>{{item.FullName }} </h2>
+          <p>Country: {{item.Country}}</p>
+        </ion-item>
+        <img [src]="item.image" width="120" height="220">
+        <div class ="spacing">
+          
+            <p>{{item.Description}}</p>
+        
+          </div>
+        
+        <ion-item detail-push navPush="EditEmployeesPage" [navParams]="{item: item}">
+        
+          <button ion-button class="btn" block>DETAILS</button>
+        </ion-item>
       </ion-card>
-      <ion-row>
-      {{item.FullName }} , {{item.age }}
-      </ion-row>
+
 
 
     </ion-item>

@@ -5,6 +5,7 @@ import {EmployeeListService} from '../../services/employees-list/employees-list.
 import {AngularFireDatabase} from "angularfire2/database";
 import {Observable} from 'rxjs/Observable';
 import {AddEmployeesPage} from "../add-employees/add-employees";
+import {EditEmployeesPage}from "../edit-employees/edit-employees";
 
 /**
  * Generated class for the OfficesMenuPage page.
@@ -27,9 +28,9 @@ interface employeeitem {
 export class OfficesMenuPage {
 
   employeelist$: Observable<employeeitem[]>;
+  
 
-
-  constructor(public navCtrl: NavController, private employees: EmployeeListService) {
+  constructor(public navCtrl: NavController, private employees: EmployeeListService,public navParams: NavParams) {
     this.employeelist$ = this.employees.getEmployeeList()
       .snapshotChanges().map(
         changes => {

@@ -22,5 +22,11 @@ return  this.employeeslistRef;
 addEmployeeItem(employee : employeeitem){
     return this.employeeslistRef.push(employee);
 }
-
+editEmployeeItem(employee : employeeitem){
+    return this.employeeslistRef.update(employee.key,employee);
+}
+deleteEmployeeItem(employee : employeeitem){
+    
+    return this.employeeslistRef.remove(employee.key);
+}
 }
