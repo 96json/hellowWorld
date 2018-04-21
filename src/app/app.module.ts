@@ -16,11 +16,14 @@ import{enviroment} from './firebase.credentials';
 import { EmployeesListPage } from '../pages/employees-list/employees-list';
 import { AddEmployeesPage } from '../pages/add-employees/add-employees';
 import {EditEmployeesPage}from "../pages/edit-employees/edit-employees";
+import {RegisterOfficePage}from "../pages/register-office/register-office";
+import {LoginOfficePage}from "../pages/login-office/login-office";
 import {AngularFireModule } from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database'; 
 import { AngularFireAuthModule } from 'angularfire2/auth'
 import {AngularFireAuth} from "angularfire2/auth";
 import {EmployeeListService} from './../services/employees-list/employees-list.services';
+import {officeListService} from './../services/offices-list/offices-list.services';
 import { FcmProvider } from '../providers/fcm/fcm';
 import { SMS } from '@ionic-native/sms';
 @NgModule({
@@ -34,7 +37,9 @@ import { SMS } from '@ionic-native/sms';
     PapersinfoPage,
     OfficesMenuPage,
     MyRequestsPage,
-    UsersTabsPage
+    UsersTabsPage,
+    RegisterOfficePage,
+    LoginOfficePage
   ],
   imports: [
     BrowserModule,
@@ -55,7 +60,9 @@ import { SMS } from '@ionic-native/sms';
     PapersinfoPage,
     OfficesMenuPage,
     MyRequestsPage,
-    UsersTabsPage
+    UsersTabsPage,
+    RegisterOfficePage,
+    LoginOfficePage
   ],
   providers: [
     StatusBar,
@@ -63,6 +70,7 @@ import { SMS } from '@ionic-native/sms';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     EmployeeListService,
     FcmProvider,
+    officeListService,
     SMS
   ]
 })

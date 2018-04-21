@@ -12,7 +12,7 @@ import {AddEmployeesPage} from "../add-employees/add-employees";
 import {MyRequestsPage} from "../my-requests/my-requests";
 import {tap} from 'rxjs/operators';
 import {FcmProvider} from '../../providers/fcm/fcm';
-
+import {LoginOfficePage} from "../login-office/login-office";
 interface User {
   email: string;
   password: string;
@@ -39,7 +39,7 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-
+/*
     this.afAuth.authState.subscribe((user: firebase.User) => {
       if (user) {
         this.openUsers()
@@ -48,7 +48,7 @@ export class HomePage {
       console.log('not logged')
 
     });
-
+*/
 
   }
 
@@ -67,6 +67,6 @@ export class HomePage {
   register(user: User) {
 
 
-    this.navCtrl.push(RegisterPage);
+    this.navCtrl.push(LoginOfficePage);
   }
 }

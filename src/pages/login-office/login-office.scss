@@ -1,4 +1,4 @@
-page-home {
+page-login-office {
     .background {
         background: linear-gradient(160deg,#fffff0  30%,#f8d879  70%);
     }
@@ -34,15 +34,20 @@ page-home {
 ion-item {
     background: transparent!important;
     border: 1px solid #fff!important;
+    border-bottom-color: transparent !important;
+    box-shadow: none !important;
     ion-input {
         color: #000000;
+        
     }
     ion-label {
         color: #000000!important;
+        border-bottom-color: transparent !important;
     }
     .item-inner {
         border: 0!important;
-        
+        border-bottom-color: transparent !important;
+        box-shadow: none !important;
     }
 
     
@@ -63,6 +68,4 @@ ion-img{
     background: transparent !important
 
 }
-
-
 }

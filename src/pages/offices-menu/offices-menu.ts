@@ -6,7 +6,7 @@ import {AngularFireDatabase} from "angularfire2/database";
 import {Observable} from 'rxjs/Observable';
 import {AddEmployeesPage} from "../add-employees/add-employees";
 import {EditEmployeesPage}from "../edit-employees/edit-employees";
-
+import { LoginOfficePage } from '../login-office/login-office';
 /**
  * Generated class for the OfficesMenuPage page.
  *
@@ -19,6 +19,7 @@ interface employeeitem {
   age: number;
   salary: number;
 }
+
 
 //@IonicPage()
 @Component({
