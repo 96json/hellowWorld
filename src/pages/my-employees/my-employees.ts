@@ -1,15 +1,13 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import {EmployeeListService} from '../../services/employees-list/employees-list.services';
 import {AngularFireDatabase} from "angularfire2/database";
 import {Observable} from 'rxjs/Observable';
 import {AddEmployeesPage} from "../add-employees/add-employees";
 import {EditEmployeesPage}from "../edit-employees/edit-employees";
-import { LoginOfficePage } from '../login-office/login-office';
-import {EmployeeOfOfficePage} from '../employee-of-office/employee-of-office';
 /**
- * Generated class for the OfficesMenuPage page.
+ * Generated class for the MyEmployeesPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -20,15 +18,14 @@ interface employeeitem {
   age: number;
   salary: number;
 }
-
-
-//@IonicPage()
+@IonicPage()
 @Component({
-  selector: 'page-offices-menu',
-  templateUrl: 'offices-menu.html',
+  selector: 'page-my-employees',
+  templateUrl: 'my-employees.html',
 })
-export class OfficesMenuPage {
+export class MyEmployeesPage {
 
+ 
   employeelist$: Observable<employeeitem[]>;
   
 

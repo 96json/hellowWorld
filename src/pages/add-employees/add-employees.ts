@@ -29,7 +29,7 @@ interface employeeitem {
   kids:string;
 
 }
-
+@IonicPage()
 @Component({
   selector: 'page-add-employees',
   templateUrl: 'add-employees.html',

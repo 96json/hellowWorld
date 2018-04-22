@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {UsersTabsPage} from '../users-tabs/users-tabs';
 import {RegisterOfficePage} from '../register-office/register-office';
+import {OfficesTabsPage} from '../offices-tabs/offices-tabs';
 /**
  * Generated class for the LoginOfficePage page.
  *
@@ -48,7 +49,7 @@ export class LoginOfficePage {
   }
   openUsers() {
 
-    this.navCtrl.setRoot(UsersTabsPage);
+    this.navCtrl.setRoot(OfficesTabsPage);
 
 
   }

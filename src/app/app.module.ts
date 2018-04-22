@@ -8,6 +8,16 @@ import {PapersinfoPage} from  '../pages/papersinfo/papersinfo';
 import {OfficesMenuPage} from  '../pages/offices-menu/offices-menu';
 import {MyRequestsPage} from  '../pages/my-requests/my-requests';
 import {UsersTabsPage } from '../pages/users-tabs/users-tabs';
+
+import {SmsPage} from  '../pages/sms/sms';
+import {OfficeRequestsPage} from  '../pages/office-requests/office-requests';
+import {MyEmployeesPage} from  '../pages/my-employees/my-employees';
+import {OfficesTabsPage } from '../pages/offices-tabs/offices-tabs';
+
+import {UserEditRequestPage} from '../pages/user-edit-request/user-edit-request';
+import {RequestEmployeePage} from '../pages/request-employee/request-employee';
+import {EmployeeOfOfficePage} from '../pages/employee-of-office/employee-of-office';
+import {OfficeEditRequestPage} from '../pages/office-edit-request/office-edit-request';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { UsersPage } from '../pages/users/users';
@@ -39,7 +49,11 @@ import { SMS } from '@ionic-native/sms';
     MyRequestsPage,
     UsersTabsPage,
     RegisterOfficePage,
-    LoginOfficePage
+    LoginOfficePage,
+    OfficesTabsPage,
+    MyEmployeesPage,
+    OfficeRequestsPage,
+    SmsPage,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +76,12 @@ import { SMS } from '@ionic-native/sms';
     MyRequestsPage,
     UsersTabsPage,
     RegisterOfficePage,
-    LoginOfficePage
+    LoginOfficePage,
+    OfficesTabsPage,
+    MyEmployeesPage,
+    OfficeRequestsPage,
+    SmsPage,
+    
   ],
   providers: [
     StatusBar,
