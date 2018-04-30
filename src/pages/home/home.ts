@@ -13,6 +13,7 @@ import {MyRequestsPage} from "../my-requests/my-requests";
 import {tap} from 'rxjs/operators';
 import {FcmProvider} from '../../providers/fcm/fcm';
 import {LoginOfficePage} from "../login-office/login-office";
+import {RegisterOfficePage} from "../register-office/register-office";
 interface User {
   email: string;
   password: string;
@@ -65,8 +66,11 @@ export class HomePage {
   }
 
   register(user: User) {
-
-
     this.navCtrl.push(RegisterPage);
+  }
+
+
+  registerAsOffice(user: User) {
+    this.navCtrl.push(RegisterOfficePage);
   }
 }
