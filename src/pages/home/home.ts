@@ -1,18 +1,11 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
-import {UsersPage} from '../users/users';
-import {EmployeesListPage} from '../employees-list/employees-list';
 import {AngularFireAuth} from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
 import {ToastController} from 'ionic-angular';
 import {RegisterPage} from '../register/register';
 import {UsersTabsPage} from '../users-tabs/users-tabs';
-import {OfficesMenuPage} from '../offices-menu/offices-menu';
-import {AddEmployeesPage} from "../add-employees/add-employees";
-import {MyRequestsPage} from "../my-requests/my-requests";
-import {tap} from 'rxjs/operators';
-import {FcmProvider} from '../../providers/fcm/fcm';
-import {LoginOfficePage} from "../login-office/login-office";
+
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RegisterOfficePage} from "../register-office/register-office";
 interface User {
   email: string;
@@ -26,8 +19,15 @@ interface User {
 
 
 export class HomePage {
+  form: FormGroup;
+  constructor(private afAuth: AngularFireAuth, public navCtrl: NavController, private toastCtrl: ToastController,formBuilder: FormBuilder) {
+    this.form = formBuilder.group({
+      username: ['', Validators.compose([Validators.maxLength(30),
+        Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
+        Validators.required])],
+      password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
+    });
 
-  constructor(private afAuth: AngularFireAuth, public navCtrl: NavController, private toastCtrl: ToastController) {
 
   }
   user = {} as User;
@@ -53,14 +53,15 @@ export class HomePage {
 
   }
 
-  login(user: User) {
-
-    this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
+  doLogin() {
+    let form = this.form;
+    console.log(form)
+    /*this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
       .then(() => {
         this.openUsers()
       }).catch((e) => {
       console.error(e);
-    })
+    })*/
 
 
   }
