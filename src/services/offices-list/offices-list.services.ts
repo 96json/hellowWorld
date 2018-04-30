@@ -13,6 +13,7 @@ interface officeitem {
 
 export class officeListService {
 private officeslistRef = this.db.list<officeitem>('offices-list')
+private officeslistRef1;
 constructor (private db : AngularFireDatabase){
 
 }
@@ -22,7 +23,9 @@ return  this.officeslistRef;
 
 }
 addofficeitem(office : officeitem){
-    return this.officeslistRef.push(office);
+    let s = office.FullName + office.address;
+    this.officeslistRef1 =  this.db.list<officeitem>('test/');
+    return this.officeslistRef1.set(s,office);
 }
 editofficeitem(office : officeitem){
     return this.officeslistRef.update(office.key,office);

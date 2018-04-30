@@ -1,0 +1,44 @@
+page-my-employees {
+   
+        .title{
+            text-align: center ;
+            font-style:bold;
+        
+        }
+        .btn{
+          background-color :#f8d879;
+          color : #222;  ;
+          font-style:bold;
+        }
+        .card-background-page {
+        
+            ion-card {
+              position: relative;
+              text-align: center;
+            width:100%;
+            }
+          
+            .card-title {
+              position: absolute;
+              top: 36%;
+              font-size: 2.0em;
+              width: 100%;
+              font-weight: bold;
+              color: #fff;
+            }
+          
+            .card-subtitle {
+              font-size: 1.0em;
+              position: absolute;
+              top: 52%;
+              width: 100%;
+              color: #fff;
+            }
+          
+          }
+          .spacing {
+            margin-top:20px;
+          }
+        
+        
+}
