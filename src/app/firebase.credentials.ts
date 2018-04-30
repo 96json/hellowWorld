@@ -1,11 +1,11 @@
 export const enviroment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyAzTB60Ed5fC__aU_RduOVZYBbgltKosrs",
-    authDomain: "helloworld-5be18.firebaseapp.com",
-    databaseURL: "https://helloworld-5be18.firebaseio.com",
-    projectId: "helloworld-5be18",
-    storageBucket: "helloworld-5be18.appspot.com",
-    messagingSenderId: "428953155813"
+    apiKey: "AIzaSyBYw5guLxV9Z7_jaWC3BFVWkPfPGZkWuEE",
+    authDomain: "appemployer.firebaseapp.com",
+    databaseURL: "https://appemployer.firebaseio.com",
+    projectId: "appemployer",
+    storageBucket: "appemployer.appspot.com",
+    messagingSenderId: "204917345264"
   }
 };

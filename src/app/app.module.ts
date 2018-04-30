@@ -14,10 +14,6 @@ import {OfficeRequestsPage} from  '../pages/office-requests/office-requests';
 import {MyEmployeesPage} from  '../pages/my-employees/my-employees';
 import {OfficesTabsPage } from '../pages/offices-tabs/offices-tabs';
 
-import {UserEditRequestPage} from '../pages/user-edit-request/user-edit-request';
-import {RequestEmployeePage} from '../pages/request-employee/request-employee';
-import {EmployeeOfOfficePage} from '../pages/employee-of-office/employee-of-office';
-import {OfficeEditRequestPage} from '../pages/office-edit-request/office-edit-request';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { UsersPage } from '../pages/users/users';
@@ -25,17 +21,16 @@ import { RegisterPage } from '../pages/register/register';
 import{enviroment} from './firebase.credentials';
 import { EmployeesListPage } from '../pages/employees-list/employees-list';
 import { AddEmployeesPage } from '../pages/add-employees/add-employees';
-import {EditEmployeesPage}from "../pages/edit-employees/edit-employees";
 import {RegisterOfficePage}from "../pages/register-office/register-office";
 import {LoginOfficePage}from "../pages/login-office/login-office";
 import {AngularFireModule } from 'angularfire2';
-import {AngularFireDatabaseModule} from 'angularfire2/database'; 
+import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth'
-import {AngularFireAuth} from "angularfire2/auth";
-import {EmployeeListService} from './../services/employees-list/employees-list.services';
-import {officeListService} from './../services/offices-list/offices-list.services';
+
 import { FcmProvider } from '../providers/fcm/fcm';
 import { SMS } from '@ionic-native/sms';
+import {EmployeeListService} from "../services/employees-list/employees-list.services";
+import {officeListService} from "../services/offices-list/offices-list.services";
 @NgModule({
   declarations: [
     MyApp,
@@ -61,7 +56,7 @@ import { SMS } from '@ionic-native/sms';
     AngularFireModule.initializeApp(enviroment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule
-    
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -81,7 +76,7 @@ import { SMS } from '@ionic-native/sms';
     MyEmployeesPage,
     OfficeRequestsPage,
     SmsPage,
-    
+
   ],
   providers: [
     StatusBar,

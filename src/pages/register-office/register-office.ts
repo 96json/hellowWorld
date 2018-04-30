@@ -4,20 +4,14 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import { AngularFireDatabase } from "angularfire2/database";
 import {officeListService} from '../../services/offices-list/offices-list.services';
 import {UsersTabsPage} from '../users-tabs/users-tabs';
+import {officeitem} from "../../models/officeItem/officeItem";
 /**
  * Generated class for the RegisterOfficePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-interface officeitem {
-  key?:string;
-  FullName:string;
-  address:string ;
-  telephone:number;
-  email:string;
-  password:string ;
-}
+
 @IonicPage()
 @Component({
   selector: 'page-register-office',
@@ -37,7 +31,7 @@ addOffice(office: officeitem ){
   const result = this.afAuth.auth.createUserWithEmailAndPassword(
     office.email,
     office.password
-  
+
   )  .then(ref => {
     this.officeService.addofficeitem(office)
           .then(ref => {
