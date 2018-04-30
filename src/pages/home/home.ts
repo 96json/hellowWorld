@@ -67,6 +67,6 @@ export class HomePage {
   register(user: User) {
 
 
-    this.navCtrl.push(LoginOfficePage);
+    this.navCtrl.push(RegisterPage);
   }
 }
