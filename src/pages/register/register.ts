@@ -39,7 +39,8 @@ export class RegisterPage {
         Validators.required])],
       password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
       name:['',Validators.required],
-      address:['']
+      address:[''],
+      rules:[{write:false,read:true}]
     });
   }
 
