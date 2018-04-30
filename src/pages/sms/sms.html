@@ -1,0 +1,31 @@
+<!--
+  Generated template for the MyRequestsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+      <ion-title class = "title">My Requests</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <ion-list>
+      <ion-item>
+        <ion-label floating>telephone</ion-label>
+        <ion-input type="tel" [(ngModel)]="phoneNumber"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label floating>Messagebody</ion-label>
+        <ion-input type="text" [(ngModel)]="Message"></ion-input>
+      </ion-item>
+    </ion-list>
+    
+    <button ion-button full (click)= "sendMessage()" > SEND </button>
+  </ion-content>
+  
