@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 
 import {EmployeeListService} from '../../services/employees-list/employees-list.services';
 import {Observable} from 'rxjs/Observable';
@@ -16,6 +16,8 @@ interface employeeitem {
   age: number;
   salary: number;
 }
+
+@IonicPage()
 @Component({
   selector: 'page-employee-of-office',
   templateUrl: 'employee-of-office.html',
@@ -24,9 +26,11 @@ interface employeeitem {
 export class EmployeeOfOfficePage {
   employeelist$: Observable<employeeitem[]>;
 
-
+  paramOfItem;
   constructor(public navCtrl: NavController, private employees: EmployeeListService,public navParams: NavParams) {
-    this.employeelist$ = this.employees.getEmployeeList()
+    this.paramOfItem = this.navParams.get('item');
+    console.log(this.paramOfItem)
+    this.employeelist$ = this.employees.getEmployeeList(this.paramOfItem)
   }
 
   ionViewDidLoad() {

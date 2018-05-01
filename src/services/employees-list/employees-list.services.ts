@@ -14,7 +14,10 @@ export class EmployeeListService {
 
   }
 
-  getEmployeeList() {
+  getEmployeeList(uidOffice?) {
+    if(uidOffice){
+     return this.db.list<any>(`list-offices/${uidOffice.uid}/list-employer`).valueChanges()
+    }
    return this.db.list<any>(`list-offices/${this.dataUser.uid}/list-employer`).valueChanges()
   }
 

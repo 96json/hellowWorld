@@ -6,26 +6,26 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-      <ion-title>list of offices</ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>list of offices</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        Log-Out
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 
-  </ion-header>
+</ion-header>
 
 
-  <ion-content padding>
+<ion-content padding>
   <ion-list>
-    <ion-item  navPush="EmployeeOfOfficePage" *ngFor="let office of officelist$ | async">
-        <ion-avatar item-start>
-            <img src="/assets/imgs/office.jpg">
-          </ion-avatar>
-          <h2>{{office.FullName}} </h2>
-          <p>{{office.address}}</p>
-
+    <ion-item *ngFor="let office of officelist$ | async" navPush="EmployeeOfOfficePage" [navParams]="{item: office}">
+      <ion-avatar item-start>
+        <img src="/assets/imgs/office.jpg">
+      </ion-avatar>
+      <h2>{{office.FullName}} </h2>
+      <p>{{office.address}}</p>
     </ion-item>
-
-
-
-
   </ion-list>
-  </ion-content>
+</ion-content>

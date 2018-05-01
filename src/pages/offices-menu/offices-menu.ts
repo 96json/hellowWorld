@@ -2,12 +2,10 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 
 import {EmployeeListService} from '../../services/employees-list/employees-list.services';
-import {AngularFireDatabase} from "angularfire2/database";
+
 import {Observable} from 'rxjs/Observable';
-import {AddEmployeesPage} from "../add-employees/add-employees";
-import {EditEmployeesPage}from "../edit-employees/edit-employees";
-import { LoginOfficePage } from '../login-office/login-office';
-import {EmployeeOfOfficePage} from '../employee-of-office/employee-of-office';
+import {AngularFireAuth} from "angularfire2/auth";
+
 /**
  * Generated class for the OfficesMenuPage page.
  *
@@ -16,8 +14,7 @@ import {EmployeeOfOfficePage} from '../employee-of-office/employee-of-office';
  */
 
 
-
-//@IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-offices-menu',
   templateUrl: 'offices-menu.html',
@@ -27,7 +24,7 @@ export class OfficesMenuPage {
   officelist$: Observable<any[]>;
 
 
-  constructor(public navCtrl: NavController, private employees: EmployeeListService,public navParams: NavParams) {
+  constructor(public navCtrl: NavController, private employees: EmployeeListService, public navParams: NavParams, private afAuth: AngularFireAuth) {
     this.officelist$ = this.employees.getListOffices()
   }
 
@@ -35,11 +32,8 @@ export class OfficesMenuPage {
     console.log('ionViewDidLoad OfficesMenuPage');
   }
 
-
-  NavtoAddEmployees() {
-
-    this.navCtrl.push(AddEmployeesPage);
-
+  logout() {
+    this.afAuth.auth.signOut().then(() => {
+    });
   }
-
 }

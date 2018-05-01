@@ -5,7 +5,6 @@ import {PapersinfoPage} from '../papersinfo/papersinfo';
 import {MyRequestsPage} from '../my-requests/my-requests';
 import {EmployeesListPage} from "../employees-list/employees-list";
 import {EmployeeListService} from "../../services/employees-list/employees-list.services";
-import {UserInfoProvider} from "../../providers/user-info/user-info";
 
 /**
  * Generated class for the UsersTabsPage tabs.
