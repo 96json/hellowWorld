@@ -62,7 +62,6 @@ export class HomePage {
 
   doLogin() {
     const {email, password} = this.form.value;
-    console.log({email, password})
     this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then(() => {
         this.openUsers()
