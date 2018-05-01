@@ -12,12 +12,12 @@ export class EmployeeListService {
 
   constructor(private db: AngularFireDatabase, private userInfoProvider: UserInfoProvider) {
     this.dataUser = this.userInfoProvider.getDataUser();
+
   }
 
   getEmployeeList() {
-
-    return this.employeeslistRef;
-
+    console.log(`list-offices/${this.dataUser.uid}/list-employer`)
+   return this.db.list<any>(`list-offices/${this.dataUser.uid}/list-employer`).valueChanges()
   }
 
   addEmployeeItem(employee: employeeitem) {
@@ -27,7 +27,8 @@ export class EmployeeListService {
   }
 
   editEmployeeItem(employee: employeeitem) {
-    return new Promise(resolve => {})
+    return new Promise(resolve => {
+    })
   }
 
   deleteEmployeeItem(employee: employeeitem) {
@@ -35,7 +36,7 @@ export class EmployeeListService {
     return this.employeeslistRef.remove(employee.key);
   }
 
-  getListEmployees(){
+  getListEmployees() {
     return
   }
 

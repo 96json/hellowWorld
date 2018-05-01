@@ -3,6 +3,8 @@ import {NavController, NavParams} from 'ionic-angular';
 import {AddEmployeesPage} from '../add-employees/add-employees';
 import {Observable} from "rxjs/Observable";
 import {employeeitem} from "../../models/officeItem/officeItem";
+import {EmployeeListService} from "../../services/employees-list/employees-list.services";
+import {AngularFireObject} from "angularfire2/database";
 
 
 /**
@@ -19,14 +21,16 @@ import {employeeitem} from "../../models/officeItem/officeItem";
 })
 export class EmployeesListPage {
 
-  employeelist$: Observable<employeeitem[]>;
+  employeelist$: Observable<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, private employees: EmployeeListService, public navParams: NavParams) {
+    this.employeelist$ = this.employees.getEmployeeList();
+    console.log(this.employees.getEmployeeList())
   }
 
-  /* ionViewDidLoad() {
-     console.log('ionViewDidLoad EmployeesListPage');
-   }*/
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad EmployeesListPage');
+  }
 
   NavtoAddEmployees() {
 
@@ -38,7 +42,7 @@ export class EmployeesListPage {
     console.log('this')
     this.navCtrl.push('InfoEmployeePage', {
       item: 'item',
-      from:'list-master'
+      from: 'list-master'
     });
   }
 
