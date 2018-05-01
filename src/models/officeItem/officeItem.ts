@@ -7,3 +7,18 @@ export interface officeitem {
   password:string ;
   rules:any
 }
+
+
+export interface employeeitem {
+  key?: string;
+  FullName: string;
+  age: number;
+  salary: number;
+  image: string;
+  Country: string;
+  ExperienceInYears:number;
+  Description:string;
+  Available:string;
+  kids:string;
+
+}

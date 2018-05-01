@@ -31,6 +31,7 @@ import { FcmProvider } from '../providers/fcm/fcm';
 import { SMS } from '@ionic-native/sms';
 import {EmployeeListService} from "../services/employees-list/employees-list.services";
 import {officeListService} from "../services/offices-list/offices-list.services";
+import { UserInfoProvider } from '../providers/user-info/user-info';
 @NgModule({
   declarations: [
     MyApp,
@@ -85,7 +86,8 @@ import {officeListService} from "../services/offices-list/offices-list.services"
     EmployeeListService,
     FcmProvider,
     officeListService,
-    SMS
+    SMS,
+    UserInfoProvider
   ]
 })
 export class AppModule {}

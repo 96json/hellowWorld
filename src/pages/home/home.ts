@@ -7,6 +7,7 @@ import {UsersTabsPage} from '../users-tabs/users-tabs';
 
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RegisterOfficePage} from "../register-office/register-office";
+import {UserInfoProvider} from "../../providers/user-info/user-info";
 
 interface User {
   email: string;
@@ -22,12 +23,13 @@ interface User {
 export class HomePage {
   form: FormGroup;
 
-  constructor(private afAuth: AngularFireAuth, public navCtrl: NavController, private toastCtrl: ToastController, formBuilder: FormBuilder) {
+  constructor(private userInfoProvider:UserInfoProvider ,private afAuth: AngularFireAuth, public navCtrl: NavController,
+              private toastCtrl: ToastController, formBuilder: FormBuilder) {
     this.form = formBuilder.group({
-      email: ['kelman@mail.com', Validators.compose([Validators.maxLength(30),
+      email: ['office@mail.com', Validators.compose([Validators.maxLength(30),
         Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
         Validators.required])],
-      password: ['123456', Validators.compose([Validators.minLength(6), Validators.required])],
+      password: ['password', Validators.compose([Validators.minLength(6), Validators.required])],
     });
 
 
@@ -43,22 +45,23 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    /*
-        this.afAuth.authState.subscribe((user: firebase.User) => {
-          if (user) {
-            this.openUsers()
-            return;
-          }
-          console.log('not logged')
 
-        });
-    */
+    this.afAuth.authState.subscribe((user: firebase.User) => {
+      if (user) {
+        this.userInfoProvider.setDataUser(user);
+        this.openUsers()
+        return;
+      }
+      console.log('not logged')
+
+    });
+
 
   }
 
   doLogin() {
-    const {email,password} = this.form.value;
-    console.log({email,password})
+    const {email, password} = this.form.value;
+    console.log({email, password})
     this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then(() => {
         this.openUsers()

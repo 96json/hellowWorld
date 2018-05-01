@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
-import { OfficesMenuPage } from '../offices-menu/offices-menu';
-import { PapersinfoPage } from '../papersinfo/papersinfo';
-import { MyRequestsPage } from '../my-requests/my-requests';
+import {Component} from '@angular/core';
+import {IonicPage, NavController} from 'ionic-angular';
+import {OfficesMenuPage} from '../offices-menu/offices-menu';
+import {PapersinfoPage} from '../papersinfo/papersinfo';
+import {MyRequestsPage} from '../my-requests/my-requests';
+import {EmployeesListPage} from "../employees-list/employees-list";
+
 /**
  * Generated class for the UsersTabsPage tabs.
  *
@@ -16,12 +18,25 @@ import { MyRequestsPage } from '../my-requests/my-requests';
   templateUrl: 'users-tabs.html'
 })
 export class UsersTabsPage {
+  data: any;
+  user: any;
+  officesMenuRoot;
+  papersinfoRoot;
+  myRequestsRoot;
+  clientMenuRoot;
 
-  officesMenuRoot = OfficesMenuPage;
-  papersinfoRoot = PapersinfoPage;
-  myRequestsRoot = MyRequestsPage;
+  constructor(public navCtrl: NavController) {
 
+    if (this.user) {
 
-  constructor(public navCtrl: NavController) {}
+      this.officesMenuRoot = OfficesMenuPage;
+      this.papersinfoRoot = PapersinfoPage;
+      this.myRequestsRoot = MyRequestsPage;
+
+    } else {
+      this.clientMenuRoot = EmployeesListPage;
+      this.myRequestsRoot = MyRequestsPage;
+    }
+  }
 
 }

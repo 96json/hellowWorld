@@ -1,32 +1,37 @@
-import { Injectable } from "@angular/core";
-import { AngularFireDatabase } from "angularfire2/database";
+import {Injectable} from "@angular/core";
+import {AngularFireDatabase} from "angularfire2/database";
+import {UserInfoProvider} from "../../providers/user-info/user-info";
+import {employeeitem, officeitem} from "../../models/officeItem/officeItem";
 
-interface employeeitem {
-    key?:string;
-    FullName:string;
-    age: number;
-    salary:number;
-  }
+
 @Injectable()
-
 export class EmployeeListService {
-private employeeslistRef = this.db.list<employeeitem>('employees-list')
-constructor (private db : AngularFireDatabase){
 
-}
-    getEmployeeList (){
+  dataUser: any;
+  private employeeslistRef = this.db.list<officeitem>('employees-list');
 
-return  this.employeeslistRef;
+  constructor(private db: AngularFireDatabase, private userInfoProvider: UserInfoProvider) {
+    this.dataUser = this.userInfoProvider.getDataUser();
+  }
 
-}
-addEmployeeItem(employee : employeeitem){
-    return this.employeeslistRef.push(employee);
-}
-editEmployeeItem(employee : employeeitem){
-    return this.employeeslistRef.update(employee.key,employee);
-}
-deleteEmployeeItem(employee : employeeitem){
-    
+  getEmployeeList() {
+
+    return this.employeeslistRef;
+
+  }
+
+  addEmployeeItem(employee: employeeitem) {
+    console.log(employee);
+    debugger;
+    return this.db.object<employeeitem>(`list-offices/${this.dataUser.uid}/list-employer/${this.dataUser.uid}${employee.FullName}`).set(employee);
+  }
+
+  editEmployeeItem(employee: officeitem) {
+    return this.employeeslistRef.update(employee.key, employee);
+  }
+
+  deleteEmployeeItem(employee: officeitem) {
+
     return this.employeeslistRef.remove(employee.key);
-}
+  }
 }
