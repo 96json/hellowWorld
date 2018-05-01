@@ -27,14 +27,6 @@ export class EmployeeOfOfficePage {
 
   constructor(public navCtrl: NavController, private employees: EmployeeListService,public navParams: NavParams) {
     this.employeelist$ = this.employees.getEmployeeList()
-      .snapshotChanges().map(
-        changes => {
-          return changes.map(c => ({
-            key: c.payload.key,
-            ...c.payload.val(),
-          }));
-        }
-      );
   }
 
   ionViewDidLoad() {

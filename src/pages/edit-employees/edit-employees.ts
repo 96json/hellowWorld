@@ -5,6 +5,7 @@ import {EmployeeListService} from '../../services/employees-list/employees-list.
 import {Camera, CameraOptions} from 'ionic-native';
 import firebase from 'firebase';
 import {employeeitem} from "../../models/officeItem/officeItem";
+import {EmployeesListPage} from "../employees-list/employees-list";
 
 /**
  * Generated class for the EditEmployeesPage page.
@@ -23,10 +24,11 @@ export class EditEmployeesPage {
   alertCtrl: AlertController;
   constructor(alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,private employeeService: EmployeeListService) {
     this.alertCtrl = alertCtrl;
+    this.employee= this.navParams.get('item');
   }
 
   ionViewWillLoad() {
-    this.employee= this.navParams.get('item');
+
   }
 
 saveItem(employee: employeeitem){
@@ -37,13 +39,13 @@ saveItem(employee: employeeitem){
 
   this.employeeService.editEmployeeItem(employee)
   .then(()=>{
-    this.navCtrl.setRoot(OfficesMenuPage);
+    this.navCtrl.setRoot(EmployeesListPage);
 
   })
 
 }
 deleteItem(employee: employeeitem){
-  let storageRef = firebase.storage().ref();
+/*  let storageRef = firebase.storage().ref();
     const NameOffile = this.employee.FullName + this.employee.age;
 
     // Create a reference to 'images/todays-date.jpg'
@@ -52,13 +54,11 @@ deleteItem(employee: employeeitem){
 
       this.presentAlert();
 
-    })
-
-
+    })*/
 
   this.employeeService.deleteEmployeeItem(employee)
   .then(() =>{
-    this.navCtrl.setRoot(OfficesMenuPage);
+    this.navCtrl.setRoot(EmployeesListPage);
   })
 }
 
