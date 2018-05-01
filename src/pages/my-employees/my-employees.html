@@ -27,20 +27,20 @@
       <ion-card>
         <ion-item>
           <ion-avatar item-start>
-            <img [src]="item.image">
+            <img [src]="item.image ||'/assets/imgs/M1.png'">
           </ion-avatar>
           <h2>{{item.FullName }} </h2>
           <p>Country: {{item.Country}}</p>
         </ion-item>
-        <img [src]="item.image" width="120" height="220">
+        <img [src]="item.image ||'/assets/imgs/M1.png'" width="120" height="220">
         <div class ="spacing">
-          
+
             <p>{{item.Description}}</p>
-        
+
           </div>
-        
+
         <ion-item detail-push navPush="EditEmployeesPage" [navParams]="{item: item}">
-        
+
           <button ion-button class="btn" block>DETAILS</button>
         </ion-item>
       </ion-card>
