@@ -28,4 +28,8 @@ export class RequestEmployeePage {
     this.employee= this.navParams.get('item');
   }
 
+  requestEmployee(employee){
+    console.log(employee)
+  }
+
 }

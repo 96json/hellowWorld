@@ -14,40 +14,42 @@
 
 
 <ion-content padding>
-    <ion-item>
-        <ion-card>
-            <img [src]="employee.image ||'/assets/imgs/M1.png'"/>
-          </ion-card>
-    </ion-item>
-    <ion-item>
-        <ion-label >Name : {{employee?.FullName}}</ion-label>
+  <ion-item>
+    <ion-card>
+      <img [src]="employee.image ||'/assets/imgs/M1.png'"/>
+    </ion-card>
+  </ion-item>
+  <ion-item>
+    <ion-label>Name : {{employee?.FullName}}</ion-label>
 
-      </ion-item>
-      <ion-item>
+  </ion-item>
+  <ion-item>
 
-<ion-label >AGE : {{employee?.age}}</ion-label>
+    <ion-label>AGE : {{employee?.age}}</ion-label>
 
-        </ion-item>
-        <ion-item>
+  </ion-item>
+  <ion-item>
 
-            <ion-label >salary : {{employee?.salary}}</ion-label>
+    <ion-label>salary : {{employee?.salary}}</ion-label>
 
-          </ion-item>
-          <ion-item>
-              <ion-label >Country : {{employee?.Country}}</ion-label>
-            </ion-item>
-            <ion-item>
-                <ion-label >Experience in years : {{employee?.ExperienceInYears}}</ion-label>
-              </ion-item>
-            <ion-item>
-                <ion-label >kids? : {{employee?.Kids}}</ion-label>
-             </ion-item>
-             <ion-item>
-                <ion-label >Available : {{employee?.Available}}</ion-label>
-           </ion-item>
-            <ion-item>
-                   <ion-label floating >  Employee's Description</ion-label>
-                <ion-textarea class="empdes" maxlength="5000" rows="4"  type="text"  [(ngModel)]="employee.Description"> Employee's description</ion-textarea>
-           </ion-item>
-           <button ion-button full class="btn"> Request</button>
+  </ion-item>
+  <ion-item>
+    <ion-label>Country : {{employee?.Country}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>Experience in years : {{employee?.ExperienceInYears}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>kids? : {{employee?.Kids}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>Available : {{employee?.Available}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label floating> Employee's Description</ion-label>
+    <ion-textarea class="empdes" maxlength="5000" rows="4" type="text" [(ngModel)]="employee.Description"> Employee's
+      description
+    </ion-textarea>
+  </ion-item>
+  <button ion-button full class="btn" (click)="requestEmployee(employee)"> Request</button>
 </ion-content>
