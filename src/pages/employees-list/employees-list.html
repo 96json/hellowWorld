@@ -23,9 +23,6 @@
 
 <ion-content class="card-background-page">
   <ion-list>
-    <ion-list-header>
-      employees
-    </ion-list-header>
     <ion-item *ngFor="let item of employeelist$ | async" text-wrap>
       <ion-card>
         <ion-item>
@@ -36,7 +33,7 @@
           <p>Country: {{item.Country}}</p>
         </ion-item>
         <img [src]="item.image || '/assets/imgs/M1.png'" width="120" height="220">
-        <div class ="spacing">
+        <div class="spacing" padding>
 
           <p>{{item.Description}}</p>
 
@@ -47,7 +44,6 @@
           <button ion-button class="btn" block>DETAILS</button>
         </ion-item>
       </ion-card>
-
 
 
     </ion-item>

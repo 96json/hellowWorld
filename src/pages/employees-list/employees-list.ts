@@ -25,7 +25,6 @@ export class EmployeesListPage {
 
   constructor(public navCtrl: NavController, private employees: EmployeeListService, public navParams: NavParams) {
     this.employeelist$ = this.employees.getEmployeeList();
-    console.log(this.employees.getEmployeeList())
   }
 
   ionViewDidLoad() {
@@ -36,14 +35,6 @@ export class EmployeesListPage {
 
     this.navCtrl.push(AddEmployeesPage);
 
-  }
-
-  openItem() {
-    console.log('this')
-    this.navCtrl.push('InfoEmployeePage', {
-      item: 'item',
-      from: 'list-master'
-    });
   }
 
 }
