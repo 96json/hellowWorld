@@ -25,12 +25,9 @@
               <p>Country: {{item.Country}}</p>
             </ion-item>
             <img [src]="item.image || '/assets/imgs/M1.png'" width="120" height="220">
-            <div class ="spacing">
-
+            <div class ="spacing" padding>
                 <p>{{item.Description}}</p>
-
               </div>
-
             <ion-item detail-push navPush="RequestEmployeePage" [navParams]="{item: item}">
 
               <button ion-button class="btn" block>DETAILS</button>

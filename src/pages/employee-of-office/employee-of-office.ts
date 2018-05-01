@@ -29,7 +29,6 @@ export class EmployeeOfOfficePage {
   paramOfItem;
   constructor(public navCtrl: NavController, private employees: EmployeeListService,public navParams: NavParams) {
     this.paramOfItem = this.navParams.get('item');
-    console.log(this.paramOfItem)
     this.employeelist$ = this.employees.getEmployeeList(this.paramOfItem)
   }
 
