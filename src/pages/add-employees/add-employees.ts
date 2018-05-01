@@ -5,6 +5,7 @@ import {Camera, CameraOptions} from 'ionic-native';
 import firebase from 'firebase';
 import {OfficesMenuPage} from "../offices-menu/offices-menu";
 import {employeeitem} from "../../models/officeItem/officeItem";
+import {EmployeesListPage} from "../employees-list/employees-list";
 
 /**
  * Generated class for the AddEmployeesPage page.
@@ -38,7 +39,7 @@ export class AddEmployeesPage {
   addOneEmployee(employee: employeeitem) {
     this.employeeService.addEmployeeItem(employee)
       .then(ref => {
-        this.navCtrl.setRoot(OfficesMenuPage);
+        this.navCtrl.setRoot(EmployeesListPage);
       });
 
    /* let storageRef = firebase.storage().ref();

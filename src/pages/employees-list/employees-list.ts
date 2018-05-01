@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 import {AddEmployeesPage} from '../add-employees/add-employees';
+import {Observable} from "rxjs/Observable";
+import {employeeitem} from "../../models/officeItem/officeItem";
+
 
 /**
  * Generated class for the EmployeesListPage page.
@@ -16,6 +19,8 @@ import {AddEmployeesPage} from '../add-employees/add-employees';
 })
 export class EmployeesListPage {
 
+  employeelist$: Observable<employeeitem[]>;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -27,6 +32,14 @@ export class EmployeesListPage {
 
     this.navCtrl.push(AddEmployeesPage);
 
+  }
+
+  openItem() {
+    console.log('this')
+    this.navCtrl.push('InfoEmployeePage', {
+      item: 'item',
+      from:'list-master'
+    });
   }
 
 }

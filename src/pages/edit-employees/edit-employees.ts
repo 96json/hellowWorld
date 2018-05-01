@@ -4,6 +4,7 @@ import {OfficesMenuPage} from "../offices-menu/offices-menu";
 import {EmployeeListService} from '../../services/employees-list/employees-list.services';
 import {Camera, CameraOptions} from 'ionic-native';
 import firebase from 'firebase';
+import {employeeitem} from "../../models/officeItem/officeItem";
 
 /**
  * Generated class for the EditEmployeesPage page.
@@ -11,13 +12,6 @@ import firebase from 'firebase';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-interface employeeitem {
-  key?: string;
-  FullName: string;
-  age: number;
-  salary: number;
-  image: string
-}
 @IonicPage()
 @Component({
   selector: 'page-edit-employees',
@@ -44,7 +38,7 @@ saveItem(employee: employeeitem){
   this.employeeService.editEmployeeItem(employee)
   .then(()=>{
     this.navCtrl.setRoot(OfficesMenuPage);
-    
+
   })
 
 }
@@ -60,7 +54,7 @@ deleteItem(employee: employeeitem){
 
     })
 
-    
+
 
   this.employeeService.deleteEmployeeItem(employee)
   .then(() =>{

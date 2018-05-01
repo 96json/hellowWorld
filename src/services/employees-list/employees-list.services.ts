@@ -26,12 +26,17 @@ export class EmployeeListService {
     return this.db.object<employeeitem>(`list-offices/${this.dataUser.uid}/list-employer/${this.dataUser.uid}${employee.FullName}`).set(employee);
   }
 
-  editEmployeeItem(employee: officeitem) {
-    return this.employeeslistRef.update(employee.key, employee);
+  editEmployeeItem(employee: employeeitem) {
+    return new Promise(resolve => {})
   }
 
-  deleteEmployeeItem(employee: officeitem) {
+  deleteEmployeeItem(employee: employeeitem) {
 
     return this.employeeslistRef.remove(employee.key);
   }
+
+  getListEmployees(){
+    return
+  }
+
 }
