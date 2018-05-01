@@ -15,29 +15,12 @@
 
   <ion-content padding>
   <ion-list>
-    <ion-item  navPush="EmployeeOfOfficePage">
+    <ion-item  navPush="EmployeeOfOfficePage" *ngFor="let office of officelist$ | async">
         <ion-avatar item-start>
             <img src="/assets/imgs/office.jpg">
           </ion-avatar>
-          <h2>office Name </h2>
-          <p>office.address</p>
-
-    </ion-item>
-    <ion-item navPush="EmployeeOfOfficePage">
-        <ion-avatar item-start>
-            <img src="/assets/imgs/office.jpg">
-          </ion-avatar>
-          <h2>office Name </h2>
-          <p>office.address</p>
-
-    </ion-item>
-
-    <ion-item navPush="EmployeeOfOfficePage"  >
-        <ion-avatar item-start>
-            <img src="/assets/imgs/office.jpg">
-          </ion-avatar>
-          <h2>office Name </h2>
-          <p>office.address</p>
+          <h2>{{office.FullName}} </h2>
+          <p>{{office.address}}</p>
 
     </ion-item>
 

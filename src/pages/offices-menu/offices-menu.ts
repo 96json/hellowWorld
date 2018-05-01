@@ -14,12 +14,7 @@ import {EmployeeOfOfficePage} from '../employee-of-office/employee-of-office';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-interface employeeitem {
-  key?: string;
-  FullName: string;
-  age: number;
-  salary: number;
-}
+
 
 
 //@IonicPage()
@@ -29,11 +24,11 @@ interface employeeitem {
 })
 export class OfficesMenuPage {
 
-  employeelist$: Observable<employeeitem[]>;
+  officelist$: Observable<any[]>;
 
 
   constructor(public navCtrl: NavController, private employees: EmployeeListService,public navParams: NavParams) {
-    this.employeelist$ = this.employees.getEmployeeList()
+    this.officelist$ = this.employees.getListOffices()
   }
 
   ionViewDidLoad() {

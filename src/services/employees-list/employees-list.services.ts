@@ -15,7 +15,6 @@ export class EmployeeListService {
   }
 
   getEmployeeList() {
-    console.log(`list-offices/${this.dataUser.uid}/list-employer`)
    return this.db.list<any>(`list-offices/${this.dataUser.uid}/list-employer`).valueChanges()
   }
 
@@ -36,5 +35,9 @@ export class EmployeeListService {
     return this.db.list<employeeitem>(`users/${this.dataUser.uid}`)
   }
 
+
+  getListOffices(){
+    return this.db.list<any>(`list-offices`).valueChanges()
+  }
 
 }
