@@ -40,7 +40,6 @@ export class RegisterOfficePage {
       office.email,
       office.password
     ).then(ref => {
-
       this.officeService.addofficeitem(office,ref)
         .then(ref => {
           this.navCtrl.setRoot(UsersTabsPage);

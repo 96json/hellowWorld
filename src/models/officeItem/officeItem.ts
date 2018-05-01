@@ -1,11 +1,12 @@
 export interface officeitem {
   key?:string;
+  uid:string;
   FullName:string;
   address:string ;
   telephone:number;
   email:string;
   password:string ;
-  rules:any
+  rules:any;
 }
 
 
@@ -20,5 +21,6 @@ export interface employeeitem {
   Description:string;
   Available:string;
   kids:string;
+  owner:any
 
 }
