@@ -29,14 +29,13 @@ export class UsersTabsPage {
 
     if (this.user) {
 
-      this.officesMenuRoot = OfficesMenuPage;
+      this.clientMenuRoot = OfficesMenuPage;
       this.papersinfoRoot = PapersinfoPage;
       this.myRequestsRoot = MyRequestsPage;
 
     } else {
-      this.clientMenuRoot = EmployeesListPage;
+      this.officesMenuRoot = EmployeesListPage;
       this.myRequestsRoot = MyRequestsPage;
     }
   }
-
 }
