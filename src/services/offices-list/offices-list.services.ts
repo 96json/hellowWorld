@@ -19,9 +19,15 @@ export class officeListService {
   }
 
   addofficeitem(office: officeitem, ref) {
-    console.log(office, ref)
     office.rules = {write: true, read: true};
     const addOfficesToList = this.db.list<officeitem>('list-offices').set(ref.uid, office);
+    const addOfficesToUserList = this.db.list<officeitem>('users').set(ref.uid, office);
+    return addOfficesToList.then(() => addOfficesToUserList.then((res) => res))
+  }
+
+  addClientitem(office: officeitem, ref) {
+    office.rules = {write: false, read: true};
+    const addOfficesToList = this.db.list<officeitem>('list-client').set(ref.uid, office);
     const addOfficesToUserList = this.db.list<officeitem>('users').set(ref.uid, office);
     return addOfficesToList.then(() => addOfficesToUserList.then((res) => res))
   }

@@ -5,6 +5,8 @@ import {ToastController} from 'ionic-angular';
 import {AngularFireDatabase} from "angularfire2/database";
 import {EmployeesListPage} from '../employees-list/employees-list';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UsersTabsPage} from "../users-tabs/users-tabs";
+import {officeListService} from "../../services/offices-list/offices-list.services";
 
 /**
  * Generated class for the RegisterPage page.
@@ -31,7 +33,8 @@ export class RegisterPage {
   form: FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private afAuth: AngularFireAuth,
-              formBuilder: FormBuilder, private toastCtrl: ToastController, private db: AngularFireDatabase) {
+              formBuilder: FormBuilder, private toastCtrl: ToastController, private db: AngularFireDatabase,
+              private officeService: officeListService) {
 
     this.form = formBuilder.group({
       email: ['', Validators.compose([Validators.maxLength(30),
@@ -48,18 +51,18 @@ export class RegisterPage {
 
   register() {
 
-    const {password, username} = this.form.value;
+    const {password, email} = this.form.value;
     const result = this.afAuth.auth.createUserWithEmailAndPassword(
-      password,
-      username
+      email,
+      password
     ).then(ref => {
-      this.userlistref.push(this.form.value)
-      this.navCtrl.push(EmployeesListPage, {key: ref.key});
+      this.officeService.addClientitem(this.form.value,ref)
+        .then(ref => {
+          this.navCtrl.setRoot(UsersTabsPage);
+        });
     }).catch((e) => {
       console.error(e);
     })
-
-
     if (result) {
       let toast = this.toastCtrl.create({
         message: 'User was added successfully',
@@ -73,10 +76,6 @@ export class RegisterPage {
 
       toast.present();
     }
-  }
-
-  catch(e) {
-    console.error(e);
   }
 }
 

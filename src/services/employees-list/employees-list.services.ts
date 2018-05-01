@@ -32,5 +32,9 @@ export class EmployeeListService {
     return this.db.object<employeeitem>(`list-offices/${this.dataUser.uid}/list-employer/${this.dataUser.uid}${employee.FullName}`).remove()
   }
 
+  currentUser(){
+    return this.db.list<employeeitem>(`users/${this.dataUser.uid}`)
+  }
+
 
 }

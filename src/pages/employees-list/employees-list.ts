@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {App, NavController, NavParams} from 'ionic-angular';
 import {AddEmployeesPage} from '../add-employees/add-employees';
 import {Observable} from "rxjs/Observable";
-import {employeeitem} from "../../models/officeItem/officeItem";
 import {EmployeeListService} from "../../services/employees-list/employees-list.services";
-import {AngularFireObject} from "angularfire2/database";
+import {AngularFireAuth} from "angularfire2/auth";
+import {HomePage} from "../home/home";
 
 
 /**
@@ -23,7 +23,7 @@ export class EmployeesListPage {
 
   employeelist$: Observable<any>;
 
-  constructor(public navCtrl: NavController, private employees: EmployeeListService, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, private employees: EmployeeListService, public navParams: NavParams,private afAuth: AngularFireAuth,public app: App) {
     this.employeelist$ = this.employees.getEmployeeList();
   }
 
@@ -34,6 +34,12 @@ export class EmployeesListPage {
   NavtoAddEmployees() {
 
     this.navCtrl.push(AddEmployeesPage);
+
+  }
+
+  logout() {
+    this.afAuth.auth.signOut().then(()=>{
+    });
 
   }
 

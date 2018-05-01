@@ -32,8 +32,8 @@ export class EditEmployeesPage {
   }
 
 saveItem(employee: employeeitem){
-  let storageRef = firebase.storage().ref();
-  console.log(storageRef)
+  /*let storageRef = firebase.storage().ref();
+  console.log(storageRef)*/
 
 
 

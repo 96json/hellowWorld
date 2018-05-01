@@ -4,6 +4,8 @@ import {OfficesMenuPage} from '../offices-menu/offices-menu';
 import {PapersinfoPage} from '../papersinfo/papersinfo';
 import {MyRequestsPage} from '../my-requests/my-requests';
 import {EmployeesListPage} from "../employees-list/employees-list";
+import {EmployeeListService} from "../../services/employees-list/employees-list.services";
+import {UserInfoProvider} from "../../providers/user-info/user-info";
 
 /**
  * Generated class for the UsersTabsPage tabs.
@@ -19,23 +21,31 @@ import {EmployeesListPage} from "../employees-list/employees-list";
 })
 export class UsersTabsPage {
   data: any;
-  user: any;
+  user: any = false;
+  clientMenuRoot = OfficesMenuPage;
+  papersinfoRoot = PapersinfoPage;
+  myRequestsRoot = MyRequestsPage;
   officesMenuRoot;
-  papersinfoRoot;
-  myRequestsRoot;
-  clientMenuRoot;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private employeeListService: EmployeeListService) {
 
-    if (this.user) {
+  }
 
-      this.clientMenuRoot = OfficesMenuPage;
-      this.papersinfoRoot = PapersinfoPage;
-      this.myRequestsRoot = MyRequestsPage;
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad UsersTabsPage');
 
-    } else {
-      this.officesMenuRoot = EmployeesListPage;
-      this.myRequestsRoot = MyRequestsPage;
-    }
+    this.employeeListService.currentUser().snapshotChanges()
+      .subscribe(actions => {
+        actions.forEach(action => {
+          if(action.key === 'rules'){
+            if(action.payload.val().write === true){
+              this.officesMenuRoot = EmployeesListPage;
+              this.myRequestsRoot = MyRequestsPage;
+              this.user = true
+            }
+          }
+        });
+      });
+
   }
 }

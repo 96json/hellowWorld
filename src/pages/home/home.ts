@@ -51,9 +51,10 @@ export class HomePage {
         this.userInfoProvider.setDataUser(user);
         this.openUsers()
         return;
-      }
-      console.log('not logged')
+      }else{
 
+        console.log('not logged')
+      }
     });
 
 
