@@ -1,13 +1,12 @@
 import {Component, Input} from '@angular/core';
-import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
+import {IonicPage, NavController, AlertController} from 'ionic-angular';
 import {EmployeeListService} from '../../services/employees-list/employees-list.services';
-import {EmployeesListPage} from '../employees-list/employees-list';
 import {Camera, CameraOptions} from 'ionic-native';
 import firebase from 'firebase';
 import {OfficesMenuPage} from "../offices-menu/offices-menu";
+import {employeeitem} from "../../models/officeItem/officeItem";
+import {EmployeesListPage} from "../employees-list/employees-list";
 
-
-//mport {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database-deprecated';
 /**
  * Generated class for the AddEmployeesPage page.
  *
@@ -16,14 +15,7 @@ import {OfficesMenuPage} from "../offices-menu/offices-menu";
  */
 
 //@IonicPage()
-interface employeeitem {
-  key?: string;
-  FullName: string;
-  age: number;
-  salary: number;
-  image: string
-}
-
+@IonicPage()
 @Component({
   selector: 'page-add-employees',
   templateUrl: 'add-employees.html',
@@ -45,11 +37,16 @@ export class AddEmployeesPage {
 
 
   addOneEmployee(employee: employeeitem) {
+    this.employeeService.addEmployeeItem(employee)
+      .then(ref => {
+        this.navCtrl.setRoot(EmployeesListPage);
+      });
 
-    let storageRef = firebase.storage().ref();
+   /* let storageRef = firebase.storage().ref();
     console.log(storageRef)
     // Create a timestamp as filename
-    const filename = Math.floor(Date.now() / 1000);
+    //const filename = Math.floor(Date.now() / 1000);
+    const filename = this.employee.FullName + this.employee.age;
 
     // Create a reference to 'images/todays-date.jpg'
     const imageRef = storageRef.child(`employees-list/${filename}.jpg`);
@@ -60,10 +57,10 @@ export class AddEmployeesPage {
         // Do something here when the data is succesfully uploaded!
         this.employeeService.addEmployeeItem(employee)
           .then(ref => {
-            this.navCtrl.setRoot(OfficesMenuPage, {key: ref.key});
+            this.navCtrl.setRoot(OfficesMenuPage);
           });
         this.showSuccesfulUploadAlert();
-      });
+      });*/
 
 
   }
@@ -74,7 +71,9 @@ export class AddEmployeesPage {
       destinationType: Camera.DestinationType.DATA_URL,
       encodingType: Camera.EncodingType.JPEG,
       mediaType: Camera.MediaType.PICTURE,
-      sourceType: sourceType
+      sourceType: sourceType,
+      allowEdit:true,
+      correctOrientation:true
     };
 
     Camera.getPicture(cameraOptions)

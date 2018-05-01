@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
-import { OfficesMenuPage } from '../offices-menu/offices-menu';
-import { PapersinfoPage } from '../papersinfo/papersinfo';
-import { MyRequestsPage } from '../my-requests/my-requests';
+import {Component} from '@angular/core';
+import {IonicPage, NavController} from 'ionic-angular';
+import {OfficesMenuPage} from '../offices-menu/offices-menu';
+import {PapersinfoPage} from '../papersinfo/papersinfo';
+import {MyRequestsPage} from '../my-requests/my-requests';
+import {EmployeesListPage} from "../employees-list/employees-list";
+import {EmployeeListService} from "../../services/employees-list/employees-list.services";
+
 /**
  * Generated class for the UsersTabsPage tabs.
  *
@@ -16,12 +19,32 @@ import { MyRequestsPage } from '../my-requests/my-requests';
   templateUrl: 'users-tabs.html'
 })
 export class UsersTabsPage {
-
-  officesMenuRoot = OfficesMenuPage;
+  data: any;
+  user: any = false;
+  clientMenuRoot = OfficesMenuPage;
   papersinfoRoot = PapersinfoPage;
   myRequestsRoot = MyRequestsPage;
+  officesMenuRoot;
 
+  constructor(public navCtrl: NavController, private employeeListService: EmployeeListService) {
 
-  constructor(public navCtrl: NavController) {}
+  }
 
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad UsersTabsPage');
+
+    this.employeeListService.currentUser().snapshotChanges()
+      .subscribe(actions => {
+        actions.forEach(action => {
+          if(action.key === 'rules'){
+            if(action.payload.val().write === true){
+              this.officesMenuRoot = EmployeesListPage;
+              this.myRequestsRoot = MyRequestsPage;
+              this.user = true
+            }
+          }
+        });
+      });
+
+  }
 }

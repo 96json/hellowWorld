@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { SMS } from '@ionic-native/sms';
 /**
  * Generated class for the MyRequestsPage page.
  *
@@ -15,11 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MyRequestsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private mysms: SMS) {
   }
-
+  Message: string ;
+  phoneNumber:number;
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyRequestsPage');
   }
+   sendMessage(){
 
+   this.mysms.send(String(this.phoneNumber),this.Message);
+  }
 }

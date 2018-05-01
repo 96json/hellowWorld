@@ -17,7 +17,7 @@
 
   <ion-item>
     <ion-label floating> Employee name</ion-label>
-    <ion-input type="text" [(ngModel)]="employee.FullName"> Employee name</ion-input>
+    <ion-input type="text"  [(ngModel)]="employee.FullName"> Employee name</ion-input>
   </ion-item>
   <ion-item>
 
@@ -31,18 +31,37 @@
     <ion-input type="number" [(ngModel)]='employee.salary'> Employee salary</ion-input>
 
   </ion-item>
+
+  <ion-item>
+      <ion-label floating> Employee Country</ion-label>
+      <ion-input type="text"  [(ngModel)]="employee.Country"> Employee Country</ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label floating>  Experience In Years</ion-label>
+        <ion-input type="number"  [(ngModel)]="employee.ExperienceInYears"> Employee Experience</ion-input>
+      </ion-item>
+    <ion-item>
+          <ion-label floating>  Kids?</ion-label>
+          <ion-input type="text"  [(ngModel)]="employee.Kids"> kids</ion-input>
+     </ion-item>
+     <ion-item>
+        <ion-label floating>  Available</ion-label>
+        <ion-input type="text"  [(ngModel)]="employee.Available"> Available</ion-input>
+   </ion-item>
+   <ion-item>
+      <ion-label floating>  Employee's Description</ion-label>
+      <ion-textarea  class="empdes" maxlength="5000" rows="4"  type="text"  [(ngModel)]="employee.Description"> Employee's description</ion-textarea>
+ </ion-item>
+
   <ion-item>
     <ion-input type="text" [(ngModel)]='employee.image' disabled="true">url image</ion-input>
   </ion-item>
 
   <ion-row class="center" *ngIf="!captureDataUrl">
-    <button ion-button (click)="getPicture(0)">Show Album</button>
+    <button ion-button full class="btn" (click)="getPicture(0)">Show Album</button>
   </ion-row>
   <ion-card>
     <img [src]="captureDataUrl" *ngIf="captureDataUrl" width="60" height="120"/>
   </ion-card>
-  <button ion-button full (click)="addOneEmployee(employee)"> ADD</button>
-
-
-  {{ employee | json }}
+  <button ion-button full class="btn"(click)="addOneEmployee(employee)"> ADD</button>
 </ion-content>

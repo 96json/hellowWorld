@@ -14,28 +14,30 @@
 
 
 <ion-content padding class="background">
-  <div>
-  <ion-list>
-    <ion-item>
-      <ion-label floating>Username</ion-label>
-      <ion-input type="email" [(ngModel)]="user.email"></ion-input>
-    </ion-item>
+  <form *ngIf="form" [formGroup]="form" (submit)="register()">
+    <div>
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Username (email)</ion-label>
+          <ion-input type="email" formControlName="email" ></ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-label floating>Password</ion-label>
-      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
 
-  <ion-item>
-    <ion-label floating>Name</ion-label>
-    <ion-input type="text" [(ngModel)]="user.name"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label floating>address</ion-label>
-    <ion-input type="text" [(ngModel)]="user.address"></ion-input>
-  </ion-item>
-</ion-list>
-</div>
-<button ion-button full class="btn" (click)="register(user)"> CREATE ACCOUNT ! </button>
+        <ion-item>
+          <ion-label floating>Name</ion-label>
+          <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
 
+        <ion-item>
+          <ion-label floating>address</ion-label>
+          <ion-input type="text" formControlName="address"></ion-input>
+        </ion-item>
+      </ion-list>
+    </div>
+    <button ion-button full class="btn" type="submit"  [disabled]="!form.valid"> CREATE ACCOUNT !</button>
+  </form>
 </ion-content>

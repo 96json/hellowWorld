@@ -8,6 +8,12 @@ import {PapersinfoPage} from  '../pages/papersinfo/papersinfo';
 import {OfficesMenuPage} from  '../pages/offices-menu/offices-menu';
 import {MyRequestsPage} from  '../pages/my-requests/my-requests';
 import {UsersTabsPage } from '../pages/users-tabs/users-tabs';
+
+import {SmsPage} from  '../pages/sms/sms';
+import {OfficeRequestsPage} from  '../pages/office-requests/office-requests';
+import {MyEmployeesPage} from  '../pages/my-employees/my-employees';
+import {OfficesTabsPage } from '../pages/offices-tabs/offices-tabs';
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { UsersPage } from '../pages/users/users';
@@ -15,12 +21,17 @@ import { RegisterPage } from '../pages/register/register';
 import{enviroment} from './firebase.credentials';
 import { EmployeesListPage } from '../pages/employees-list/employees-list';
 import { AddEmployeesPage } from '../pages/add-employees/add-employees';
+import {RegisterOfficePage}from "../pages/register-office/register-office";
+import {LoginOfficePage}from "../pages/login-office/login-office";
 import {AngularFireModule } from 'angularfire2';
-import {AngularFireDatabaseModule} from 'angularfire2/database'; 
+import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth'
-import {AngularFireAuth} from "angularfire2/auth";
-import {EmployeeListService} from './../services/employees-list/employees-list.services';
 
+import { FcmProvider } from '../providers/fcm/fcm';
+import { SMS } from '@ionic-native/sms';
+import {EmployeeListService} from "../services/employees-list/employees-list.services";
+import {officeListService} from "../services/offices-list/offices-list.services";
+import { UserInfoProvider } from '../providers/user-info/user-info';
 @NgModule({
   declarations: [
     MyApp,
@@ -32,7 +43,13 @@ import {EmployeeListService} from './../services/employees-list/employees-list.s
     PapersinfoPage,
     OfficesMenuPage,
     MyRequestsPage,
-    UsersTabsPage
+    UsersTabsPage,
+    RegisterOfficePage,
+    LoginOfficePage,
+    OfficesTabsPage,
+    MyEmployeesPage,
+    OfficeRequestsPage,
+    SmsPage,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +57,7 @@ import {EmployeeListService} from './../services/employees-list/employees-list.s
     AngularFireModule.initializeApp(enviroment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule
-    
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -53,13 +70,24 @@ import {EmployeeListService} from './../services/employees-list/employees-list.s
     PapersinfoPage,
     OfficesMenuPage,
     MyRequestsPage,
-    UsersTabsPage
+    UsersTabsPage,
+    RegisterOfficePage,
+    LoginOfficePage,
+    OfficesTabsPage,
+    MyEmployeesPage,
+    OfficeRequestsPage,
+    SmsPage,
+
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    EmployeeListService
+    EmployeeListService,
+    FcmProvider,
+    officeListService,
+    SMS,
+    UserInfoProvider
   ]
 })
 export class AppModule {}

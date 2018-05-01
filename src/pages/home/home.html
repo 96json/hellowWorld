@@ -15,15 +15,15 @@
     </div>-->
   <ion-grid>
     <ion-row>
-      <ion-col col-12 class = 'wlc' >WELCOME</ion-col>
+      <ion-col col-12 class='wlc'>WELCOME</ion-col>
     </ion-row>
     <ion-row>
       <br>
-      
+
     </ion-row>
     <ion-row>
       <ion-col offset-4>
-        <ion-img width="100" height="100"  src="/assets/imgs/m3.png">
+        <ion-img width="100" height="100" src="/assets/imgs/m3.png">
         </ion-img>
       </ion-col>
     </ion-row>
@@ -31,22 +31,26 @@
 
 
   <div class="inputs">
+    <form *ngIf="form" [formGroup]="form" (submit)="doLogin()">
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Username (email)</ion-label>
+          <ion-input type="text" formControlName="email"></ion-input>
+        </ion-item>
 
-    <ion-list>
-      <ion-item>
-        <ion-label floating>Username</ion-label>
-        <ion-input type="text" [(ngModel)]="user.email"></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+      </ion-list>
 
-      <ion-item>
-        <ion-label floating>Password</ion-label>
-        <ion-input type="password" [(ngModel)]="user.password"></ion-input>
-      </ion-item>
-    </ion-list>
+      <button ion-button full class="btn" type="submit" [disabled]="!form.valid"> Login</button>
+    </form>
   </div>
-
-
-  <button ion-button full class="btn" (click)="login(user)"> Login</button>
   <button ion-button full class="btn" (click)="register(user)"> register</button>
-
+  <ion-buttons end>
+    <button ion-button clear class="btn1" (click)="registerAsOffice()">
+      Login as office
+    </button>
+  </ion-buttons>
 </ion-content>

@@ -1,5 +1,5 @@
 <!--
-  Generated template for the OfficesMenuPage page.
+  Generated template for the OfficeRequestsPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,10 +7,10 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title class="title">OFFICES</ion-title>
+    <ion-title>list of offices</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="NavtoAddEmployees()" >
-        <ion-icon name = "add"></ion-icon>
+      <button ion-button icon-only (click)="logout()">
+        Log-Out
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -18,23 +18,14 @@
 </ion-header>
 
 
-<ion-content padding class="card-background-page">
+<ion-content padding>
   <ion-list>
-    <ion-list-header>
-      employees
-    </ion-list-header>
-    <ion-item *ngFor="let item of employeelist$ | async">
-      <ion-card>
-        <img [src]="item.image"/>
-      </ion-card>
-      <ion-row>
-      {{item.FullName }} , {{item.age }}
-      </ion-row>
-
-
+    <ion-item *ngFor="let office of officelist$ | async" navPush="EmployeeOfOfficePage" [navParams]="{item: office}">
+      <ion-avatar item-start>
+        <img src="/assets/imgs/office.jpg">
+      </ion-avatar>
+      <h2>{{office.FullName}} </h2>
+      <p>{{office.address}}</p>
     </ion-item>
-
-
   </ion-list>
-
 </ion-content>

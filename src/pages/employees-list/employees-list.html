@@ -9,14 +9,14 @@
   <ion-navbar>
     <ion-title>EmployeesList</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="NavtoAddEmployees()" >
-        <ion-icon name = "add"></ion-icon>
-        hello
-
-        </button>
-
-
-
+      <button ion-button icon-only (click)="NavtoAddEmployees()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
     </ion-buttons>
 
   </ion-navbar>
@@ -24,6 +24,34 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="card-background-page">
+  <ion-list>
+    <ion-item *ngFor="let item of employeelist$ | async" text-wrap>
+      <ion-card>
+        <ion-item>
+          <ion-avatar item-start>
+            <img [src]="item.image || '/assets/imgs/M1.png'">
+          </ion-avatar>
+          <h2>{{item.FullName }} </h2>
+          <p>Country: {{item.Country}}</p>
+        </ion-item>
+        <img [src]="item.image || '/assets/imgs/M1.png'" width="120" height="220">
+        <div class="spacing" padding>
 
+          <p>{{item.Description}}</p>
+
+        </div>
+
+        <ion-item detail-push navPush="CvEmployeePage" [navParams]="{item: item}">
+
+          <button ion-button class="btn" block>DETAILS</button>
+        </ion-item>
+      </ion-card>
+
+
+    </ion-item>
+
+
+  </ion-list>
 </ion-content>
+

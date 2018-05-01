@@ -4,12 +4,17 @@ page-offices-menu {
     font-style:bold;
 
 }
-
+.btn{
+  background-color :#f8d879;
+  color : #222;  ;
+  font-style:bold;
+}
 .card-background-page {
 
     ion-card {
       position: relative;
       text-align: center;
+    width:100%;
     }
   
     .card-title {
@@ -29,5 +34,8 @@ page-offices-menu {
       color: #fff;
     }
   
+  }
+  .spacing {
+    margin-top:20px;
   }
 }

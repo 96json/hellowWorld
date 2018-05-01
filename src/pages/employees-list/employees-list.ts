@@ -1,6 +1,11 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {App, NavController, NavParams} from 'ionic-angular';
 import {AddEmployeesPage} from '../add-employees/add-employees';
+import {Observable} from "rxjs/Observable";
+import {EmployeeListService} from "../../services/employees-list/employees-list.services";
+import {AngularFireAuth} from "angularfire2/auth";
+import {HomePage} from "../home/home";
+
 
 /**
  * Generated class for the EmployeesListPage page.
@@ -16,16 +21,25 @@ import {AddEmployeesPage} from '../add-employees/add-employees';
 })
 export class EmployeesListPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  employeelist$: Observable<any>;
+
+  constructor(public navCtrl: NavController, private employees: EmployeeListService, public navParams: NavParams,private afAuth: AngularFireAuth,public app: App) {
+    this.employeelist$ = this.employees.getEmployeeList();
   }
 
-  /* ionViewDidLoad() {
-     console.log('ionViewDidLoad EmployeesListPage');
-   }*/
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad EmployeesListPage');
+  }
 
   NavtoAddEmployees() {
 
     this.navCtrl.push(AddEmployeesPage);
+
+  }
+
+  logout() {
+    this.afAuth.auth.signOut().then(()=>{
+    });
 
   }
 
