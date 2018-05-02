@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {AngularFireDatabase} from "angularfire2/database";
 import {UserInfoProvider} from "../../providers/user-info/user-info";
 import {employeeitem, officeitem} from "../../models/officeItem/officeItem";
+import * as moment from 'moment'
 
 
 @Injectable()
@@ -22,18 +23,19 @@ export class EmployeeListService {
   }
 
   addEmployeeItem(employee: employeeitem) {
+    employee.key = moment().format();
     const {uid,email,displayName} = this.dataUser.toJSON();
     employee.owner = {uid,email,displayName};
-    return this.db.object<employeeitem>(`list-offices/${this.dataUser.uid}/list-employer/${this.dataUser.uid}${employee.FullName}`).set(employee);
+    return this.db.object<employeeitem>(`list-offices/${this.dataUser.uid}/list-employer/${this.dataUser.uid}${employee.key}`).set(employee);
   }
 
   editEmployeeItem(employee: employeeitem) {
-    return this.db.object<employeeitem>(`list-offices/${this.dataUser.uid}/list-employer/${this.dataUser.uid}${employee.FullName}`).update(employee)
+    return this.db.object<employeeitem>(`list-offices/${this.dataUser.uid}/list-employer/${this.dataUser.uid}${employee.key}`).update(employee)
   }
 
   deleteEmployeeItem(employee: employeeitem) {
 
-    return this.db.object<employeeitem>(`list-offices/${this.dataUser.uid}/list-employer/${this.dataUser.uid}${employee.FullName}`).remove()
+    return this.db.object<employeeitem>(`list-offices/${this.dataUser.uid}/list-employer/${this.dataUser.uid}${employee.key}`).remove()
   }
 
   currentUser(){

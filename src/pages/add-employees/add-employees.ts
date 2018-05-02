@@ -45,7 +45,7 @@ export class AddEmployeesPage {
    /* let storageRef = firebase.storage().ref();
     console.log(storageRef)
     // Create a timestamp as filename
-    //const filename = Math.floor(Date.now() / 1000);
+    //const filename = Math.floor(moment().format()/ 1000);
     const filename = this.employee.FullName + this.employee.age;
 
     // Create a reference to 'images/todays-date.jpg'
