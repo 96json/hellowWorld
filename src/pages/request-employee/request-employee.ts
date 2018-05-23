@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {EmployeeListService} from "../../services/employees-list/employees-list.services";
+import {UsersTabsPage} from "../users-tabs/users-tabs";
 
 /**
  * Generated class for the RequestEmployeePage page.
@@ -21,7 +23,7 @@ interface employeeitem {
 })
 export class RequestEmployeePage {
   employee = {} as employeeitem;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private employeeService: EmployeeListService) {
   }
 
   ionViewWillLoad() {
@@ -30,6 +32,13 @@ export class RequestEmployeePage {
 
   requestEmployee(employee){
     console.log(employee)
+
+    this.employeeService.requestEmployee(employee)
+      .then(()=>{
+        console.log('add request');
+        this.navCtrl.setRoot(UsersTabsPage);
+      })
+      .catch(()=>console.log('no add request'))
   }
 
 }
