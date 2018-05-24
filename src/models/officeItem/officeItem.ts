@@ -22,5 +22,6 @@ export interface employeeitem {
   Description:string;
   Available:string;
   kids:string;
+  uid:any;
   recruiter:any
 }

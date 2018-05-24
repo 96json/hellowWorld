@@ -15,34 +15,14 @@
 
   <ion-content padding>
   <ion-list>
-    <ion-item  >
+    <ion-item  *ngFor="let item of items | async" >
         <ion-avatar item-start>
             <img src="/assets/imgs/m3.png">
           </ion-avatar>
-          <h2>Employee Name </h2>
-          <p>office.name</p>
+          <h2>{{item}} </h2>
+<!--          <p *ngIf="item.applicant">{{item.applicant.email}}</p>
+          <p *ngIf="!item.applicant">{{item.recruiter.email}}</p>-->
 
     </ion-item>
-    <ion-item >
-        <ion-avatar item-start>
-            <img src="/assets/imgs/m3.png">
-          </ion-avatar>
-          <h2>Employee Name </h2>
-          <p>office.name</p>
-
-    </ion-item>
-
-    <ion-item  >
-        <ion-avatar item-start>
-            <img src="/assets/imgs/m3.png">
-          </ion-avatar>
-          <h2>Employee Name </h2>
-          <p>office.name</p>
-
-    </ion-item>
-
-
-
-
   </ion-list>
   </ion-content>

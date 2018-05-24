@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SMS } from '@ionic-native/sms';
+import {EmployeeListService} from "../../services/employees-list/employees-list.services";
+import {Observable} from "rxjs/Observable";
 /**
  * Generated class for the MyRequestsPage page.
  *
@@ -14,13 +16,16 @@ import { SMS } from '@ionic-native/sms';
   templateUrl: 'my-requests.html',
 })
 export class MyRequestsPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams,private mysms: SMS) {
-  }
   Message: string ;
   phoneNumber:number;
+  items :Observable<any>;
+  constructor(public navCtrl: NavController, public navParams: NavParams,private mysms: SMS, public employeeServices : EmployeeListService) {
+    this.items = this.employeeServices.getRequestList()
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyRequestsPage');
+
   }
    sendMessage(){
 

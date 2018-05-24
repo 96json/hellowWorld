@@ -51,20 +51,17 @@ export class EmployeeListService {
     const {uid, email, displayName} = this.dataUser.toJSON();
     const dataApplicant = {applicant: {uid, email, displayName}};
     const assisgObjectToApplicant = {...dataApplicant, ...employee};
-    console.log(assisgObjectToApplicant);
     const {key, recruiter} = employee;
-    let addToOffice = this.db.object<employeeitem>(`list-offices/${recruiter.uid}/list-request/${this.dataUser.uid}-${key}`).set(assisgObjectToApplicant);
-    let addToUser = this.db.object<employeeitem>(`users/${this.dataUser.uid}/list-request/${recruiter.uid}-${key}`).set(employee);
+    let addToOffice = this.db.object<employeeitem>(`list-request/${this.dataUser.uid}`).set(assisgObjectToApplicant);
+    let addToUser = this.db.object<employeeitem>(`list-request/${recruiter.uid}`).set(employee);
 
     return Promise.all([addToOffice, addToUser])
   }
 
 
-  getRequestList(typePerson?) {
-    if (typePerson) {
-      return this.db.list<any>(`list-offices/${typePerson.uid}/list-request`).valueChanges()
-    }
-    return this.db.list<any>(`users/${this.dataUser.uid}/list-request`).valueChanges()
+  getRequestList() {
+
+    return this.db.list<any>(`list-request/${this.dataUser.uid}`).valueChanges()
   }
 
 
