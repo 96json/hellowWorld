@@ -25,7 +25,7 @@ export class EmployeeListService {
   addEmployeeItem(employee: employeeitem) {
     employee.key = moment().format();
     const {uid, email, displayName} = this.dataUser.toJSON();
-    employee.owner = {uid, email, displayName};
+    employee.recruiter = {uid, email, displayName};
     return this.db.object<employeeitem>(`list-offices/${this.dataUser.uid}/list-employer/${this.dataUser.uid}${employee.key}`).set(employee);
   }
 
@@ -48,11 +48,24 @@ export class EmployeeListService {
   }
 
   requestEmployee(employee: employeeitem) {
-    const {key, owner: {uid}} = employee;
-    let addToOffice = this.db.object<employeeitem>(`list-offices/${uid}/list-request/${this.dataUser.uid}/${key}`).set(employee);
-    let addToUser = this.db.object<employeeitem>(`users/${this.dataUser.uid}/list-request/${uid}/${key}`).set(employee);
+    const {uid, email, displayName} = this.dataUser.toJSON();
+    const dataApplicant = {applicant: {uid, email, displayName}};
+    const assisgObjectToApplicant = {...dataApplicant, ...employee};
+    console.log(assisgObjectToApplicant);
+    const {key, recruiter} = employee;
+    let addToOffice = this.db.object<employeeitem>(`list-offices/${recruiter.uid}/list-request/${this.dataUser.uid}-${key}`).set(assisgObjectToApplicant);
+    let addToUser = this.db.object<employeeitem>(`users/${this.dataUser.uid}/list-request/${recruiter.uid}-${key}`).set(employee);
 
     return Promise.all([addToOffice, addToUser])
   }
+
+
+  getRequestList(typePerson?) {
+    if (typePerson) {
+      return this.db.list<any>(`list-offices/${typePerson.uid}/list-request`).valueChanges()
+    }
+    return this.db.list<any>(`users/${this.dataUser.uid}/list-request`).valueChanges()
+  }
+
 
 }

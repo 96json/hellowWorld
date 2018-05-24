@@ -27,9 +27,9 @@ export class EmployeeOfOfficePage {
   employeelist$: Observable<employeeitem[]>;
 
   paramOfItem;
-  constructor(public navCtrl: NavController, private employees: EmployeeListService,public navParams: NavParams) {
+  constructor(public navCtrl: NavController, private employeeService: EmployeeListService,public navParams: NavParams) {
     this.paramOfItem = this.navParams.get('item');
-    this.employeelist$ = this.employees.getEmployeeList(this.paramOfItem)
+    this.employeelist$ = this.employeeService.getEmployeeList(this.paramOfItem)
   }
 
   ionViewDidLoad() {

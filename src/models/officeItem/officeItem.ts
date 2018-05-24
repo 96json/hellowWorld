@@ -7,6 +7,7 @@ export interface officeitem {
   email:string;
   password:string ;
   rules:any;
+  recruiter:any
 }
 
 
@@ -21,6 +22,5 @@ export interface employeeitem {
   Description:string;
   Available:string;
   kids:string;
-  owner:any
-
+  recruiter:any
 }

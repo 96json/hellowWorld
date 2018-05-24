@@ -31,11 +31,8 @@ export class RequestEmployeePage {
   }
 
   requestEmployee(employee){
-    console.log(employee)
-
     this.employeeService.requestEmployee(employee)
       .then(()=>{
-        console.log('add request');
         this.navCtrl.setRoot(UsersTabsPage);
       })
       .catch(()=>console.log('no add request'))
