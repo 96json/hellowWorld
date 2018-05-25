@@ -1,3 +1,4 @@
+///<reference path="../../../node_modules/@firebase/auth-types/index.d.ts"/>
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {AngularFireAuth} from 'angularfire2/auth';
@@ -19,13 +20,7 @@ import {officeitem} from "../../models/officeItem/officeItem";
   templateUrl: 'register-office.html',
 })
 export class RegisterOfficePage {
-  office = {
-  FullName:'office',
-  address:'lalalala' ,
-  telephone:878987987987,
-  email : 'office@mail.com',
-  password:'password'
-  };
+  office = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private afAuth: AngularFireAuth,
               private toastCtrl: ToastController, private db: AngularFireDatabase, private officeService: officeListService) {
@@ -42,7 +37,10 @@ export class RegisterOfficePage {
     ).then(ref => {
       this.officeService.addofficeitem(office,ref)
         .then(ref => {
-          this.navCtrl.setRoot(UsersTabsPage);
+          this.afAuth.auth.currentUser.updateProfile({
+            displayName: office.FullName,
+            photoURL: 'http://www.ravhar.com/slide%20images/back2.jpg'
+          }).then(()=>this.navCtrl.setRoot(UsersTabsPage))
         });
     }).catch((e) => {
       console.error(e);

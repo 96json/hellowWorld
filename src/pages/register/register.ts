@@ -41,13 +41,13 @@ export class RegisterPage {
         Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
         Validators.required])],
       password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
-      name:['',Validators.required],
-      address:[''],
-      rules:[{write:false,read:true}]
+      name: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
+      address: [''],
+      rules: [{write: false, read: true}]
     });
   }
 
-  private userlistref = this.db.list<User>('userlist');
 
   register() {
 
@@ -56,26 +56,24 @@ export class RegisterPage {
       email,
       password
     ).then(ref => {
-      this.officeService.addClientitem(this.form.value,ref)
+      this.officeService.addClientitem(this.form.value, ref)
         .then(ref => {
-          this.navCtrl.setRoot(UsersTabsPage);
+          console.log(this.afAuth.auth.currentUser);
+          this.afAuth.auth.currentUser.updateProfile({
+            displayName: this.form.value.name,
+            photoURL: "https://example.com/jane-q-user/profile.jpg"
+          })
+            .then(() => this.navCtrl.setRoot(UsersTabsPage))
         });
-    }).catch((e) => {
-      console.error(e);
-    })
-    if (result) {
       let toast = this.toastCtrl.create({
         message: 'User was added successfully',
         duration: 3000,
         position: 'top'
       });
-
-      toast.onDidDismiss(() => {
-        console.log('Dismissed toast');
-      });
-
       toast.present();
-    }
+    }).catch((e) => {
+      console.error(e);
+    })
   }
 }
 
