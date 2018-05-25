@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {AngularFireDatabase} from "angularfire2/database";
 import {UserInfoProvider} from "../../providers/user-info/user-info";
-import {employeeitem, officeitem} from "../../models/officeItem/officeItem";
+import {employeeitem} from "../../models/officeItem/officeItem";
 import * as moment from 'moment'
 
 
@@ -47,13 +47,13 @@ export class EmployeeListService {
     return this.db.list<any>(`list-offices`).valueChanges()
   }
 
-  requestEmployee(employee: employeeitem) {
+  requestEmployee(employee: employeeitem) { // solo ejecuta este metodo el usuario
+    const id = moment().format();
     const {uid, email, displayName} = this.dataUser.toJSON();
-    const dataApplicant = {applicant: {uid, email, displayName}};
-    const assisgObjectToApplicant = {...dataApplicant, ...employee};
-    const {key, recruiter} = employee;
-    let addToOffice = this.db.object<employeeitem>(`list-request/${this.dataUser.uid}`).set(assisgObjectToApplicant);
-    let addToUser = this.db.object<employeeitem>(`list-request/${recruiter.uid}`).set(employee);
+    const assisgObjectToApplicant = {...{applicant: {uid, email, displayName}}, ...employee,...{dateRequire:id}};
+    const {recruiter} = employee;
+    let addToOffice = this.db.object<employeeitem>(`list-request/${recruiter.uid}/${id}`).set(assisgObjectToApplicant);
+    let addToUser = this.db.object<employeeitem>(`list-request/${this.dataUser.uid}/${id}`).set({...employee,...{dateRequire:id}});
 
     return Promise.all([addToOffice, addToUser])
   }
