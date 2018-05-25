@@ -15,7 +15,7 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let item of items | async" [ngClass]="{disabled: item.applicant && item.status != 'Pending'}">
+    <ion-item *ngFor="let item of items | async">
       <ion-avatar item-start>
         <img src="/assets/imgs/m3.png">
       </ion-avatar>
