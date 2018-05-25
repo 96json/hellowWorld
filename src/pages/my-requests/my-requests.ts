@@ -17,12 +17,11 @@ import {Observable} from "rxjs/Observable";
 })
 export class MyRequestsPage {
   Message: string ;
-  phoneNumber:number;
-  status:string;
+  phoneNumber:string;
   items :Observable<any>;
   constructor(public navCtrl: NavController, public navParams: NavParams,private mysms: SMS, public employeeServices : EmployeeListService) {
     this.items = this.employeeServices.getRequestList()
-    this.status = 'opera'
+    this.phoneNumber = '12412412412412'
   }
 
   ionViewDidLoad() {
@@ -31,19 +30,26 @@ export class MyRequestsPage {
   }
 
   accept(item){
+    this.Message = ` You request isaccepted`;
     this.employeeServices.changesStatus('Accept',item)
+      .then(()=>{
+        //here add method send sms
+        this.sendMessage(this.Message)
+      })
   }
 
   reject(item){
-    this.employeeServices.changesStatus('Reject',item)
+    this.Message = ` You request is not accepted`;
+      this.employeeServices.changesStatus('Reject',item)
       .then(()=>{
         //here add method send sms
+        this.sendMessage(this.Message)
       })
 
 
   }
 
-   sendMessage(){
+   sendMessage(message){
 
    this.mysms.send(String(this.phoneNumber),this.Message);
   }
