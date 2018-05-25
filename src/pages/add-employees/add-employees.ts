@@ -5,7 +5,6 @@ import {Camera, CameraOptions} from 'ionic-native';
 import firebase from 'firebase';
 import {OfficesMenuPage} from "../offices-menu/offices-menu";
 import {employeeitem} from "../../models/officeItem/officeItem";
-import {EmployeesListPage} from "../employees-list/employees-list";
 
 /**
  * Generated class for the AddEmployeesPage page.
@@ -37,30 +36,21 @@ export class AddEmployeesPage {
 
 
   addOneEmployee(employee: employeeitem) {
-    this.employeeService.addEmployeeItem(employee)
-      .then(ref => {
-        this.navCtrl.setRoot(EmployeesListPage);
-      });
 
-   /* let storageRef = firebase.storage().ref();
-    console.log(storageRef)
-    // Create a timestamp as filename
-    //const filename = Math.floor(moment().format()/ 1000);
+    let storageRef = firebase.storage().ref();
     const filename = this.employee.FullName + this.employee.age;
 
-    // Create a reference to 'images/todays-date.jpg'
     const imageRef = storageRef.child(`employees-list/${filename}.jpg`);
 
     imageRef.putString(this.captureDataUrl, firebase.storage.StringFormat.DATA_URL)
       .then((snapshot) => {
         this.employee.image = snapshot.downloadURL;
-        // Do something here when the data is succesfully uploaded!
         this.employeeService.addEmployeeItem(employee)
           .then(ref => {
             this.navCtrl.setRoot(OfficesMenuPage);
           });
         this.showSuccesfulUploadAlert();
-      });*/
+      });
 
 
   }
