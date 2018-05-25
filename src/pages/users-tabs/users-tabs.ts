@@ -36,12 +36,15 @@ export class UsersTabsPage {
     this.employeeListService.currentUser().snapshotChanges()
       .subscribe(actions => {
         actions.forEach(action => {
-          if(action.key === 'rules'){
-            if(action.payload.val().write === true){
+          if (action.key === 'rules') {
+            if (action.payload.val().write === true) {
               this.officesMenuRoot = EmployeesListPage;
               this.myRequestsRoot = MyRequestsPage;
               this.user = true
             }
+          }
+          if (action.key === 'phoneNumber') {
+            this.employeeListService.numberPhone = action.payload.val()
           }
         });
       });

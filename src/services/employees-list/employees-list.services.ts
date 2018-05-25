@@ -7,9 +7,17 @@ import * as moment from 'moment'
 
 @Injectable()
 export class EmployeeListService {
+  get numberPhone(): any {
+    return this._numberPhone;
+  }
+
+  set numberPhone(value: any) {
+    console.log(value);
+    this._numberPhone = value;
+  }
 
   dataUser: any;
-
+  private _numberPhone:any;
   constructor(private db: AngularFireDatabase, private userInfoProvider: UserInfoProvider) {
     this.dataUser = this.userInfoProvider.getDataUser();
 
@@ -25,7 +33,7 @@ export class EmployeeListService {
   addEmployeeItem(employee: employeeitem) {
     employee.key = moment().format();
     const {uid, email, displayName} = this.dataUser.toJSON();
-    employee.recruiter = {uid, email, displayName};
+    employee.recruiter = {uid, email, displayName,...{numberPhone:this.numberPhone}};
     return this.db.object<employeeitem>(`list-offices/${this.dataUser.uid}/list-employer/${this.dataUser.uid}${employee.key}`).set(employee);
   }
 
@@ -55,7 +63,8 @@ export class EmployeeListService {
         applicant: {
           uid,
           email,
-          displayName
+          displayName,
+          numberPhone:this.numberPhone
         }
       }, ...employee, ...{dateRequire: id}, ...{status: 'Pending'}
     };

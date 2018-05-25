@@ -17,7 +17,7 @@
   <ion-list>
     <ion-item *ngFor="let item of items | async">
       <ion-avatar item-start>
-        <img src="item.image || /assets/imgs/m3.png">
+        <ion-img [src]="item.image || '/assets/imgs/M1.png'"></ion-img>
       </ion-avatar>
       <h2>{{item.FullName}}</h2>
       <p *ngIf="!item.applicant">{{item.recruiter.email}}</p>

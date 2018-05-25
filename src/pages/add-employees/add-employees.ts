@@ -3,8 +3,8 @@ import {IonicPage, NavController, AlertController} from 'ionic-angular';
 import {EmployeeListService} from '../../services/employees-list/employees-list.services';
 import {Camera, CameraOptions} from 'ionic-native';
 import firebase from 'firebase';
-import {OfficesMenuPage} from "../offices-menu/offices-menu";
 import {employeeitem} from "../../models/officeItem/officeItem";
+import {EmployeesListPage} from "../employees-list/employees-list";
 
 /**
  * Generated class for the AddEmployeesPage page.
@@ -47,7 +47,7 @@ export class AddEmployeesPage {
         this.employee.image = snapshot.downloadURL;
         this.employeeService.addEmployeeItem(employee)
           .then(ref => {
-            this.navCtrl.setRoot(OfficesMenuPage);
+            this.navCtrl.setRoot(EmployeesListPage);
           });
         this.showSuccesfulUploadAlert();
       });
