@@ -51,6 +51,6 @@ export class MyRequestsPage {
 
    sendMessage(message){
 
-   this.mysms.send(String(this.phoneNumber),this.Message);
+   this.mysms.send(String(this.phoneNumber),message);
   }
 }

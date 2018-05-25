@@ -23,10 +23,10 @@
       <p *ngIf="!item.applicant">{{item.recruiter.email}}</p>
       <p *ngIf="item.applicant">{{item.applicant.email}}</p>
       <p>{{item.status}}</p>
-      <button ion-button round *ngIf="item.applicant" (click)="accept(item)">
+      <button ion-button round *ngIf="!item.applicant" (click)="accept(item)">
         Accept
       </button>
-      <button ion-button round *ngIf="item.applicant" (click)="reject(item)">
+      <button ion-button round *ngIf="!item.applicant" (click)="reject(item)">
         Reject
       </button>
     </ion-item>
