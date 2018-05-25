@@ -9,14 +9,14 @@
     <ion-navbar>
       <ion-title>officeEditRequest</ion-title>
     </ion-navbar>
-  
+
   </ion-header>
-  
-  
+
+
   <ion-content padding>
       <ion-item>
           <ion-card>
-              <img src="/assets/imgs/m3.png"/>
+              <img [src]="item.image || '/assets/imgs/M1.png'"/>
             </ion-card>
       </ion-item>
       <ion-item>
@@ -31,12 +31,11 @@
               <ion-label floating> user name or user email:</ion-label>
               <ion-input type="text"> user name or user email</ion-input>
             </ion-item>
-           
+
               <ion-item>
                   <ion-label floating> status</ion-label>
                   <ion-textarea  class="empdes" maxlength="5000" rows="4"  type="text"  >This maid will arrive tomorrow at the airport at 7.40 pm </ion-textarea>
              </ion-item>
-             
+
              <button ion-button full > Delete!</button>
   </ion-content>
-  

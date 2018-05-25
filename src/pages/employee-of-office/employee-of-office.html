@@ -14,30 +14,31 @@
 
 
 <ion-content class="card-background-page">
-    <ion-list>
-        <ion-item *ngFor="let item of employeelist$ | async"text-wrap>
-          <ion-card>
-            <ion-item>
-              <ion-avatar item-start>
-                <img [src]="item.image || '/assets/imgs/M1.png'">
-              </ion-avatar>
-              <h2>{{item.FullName }} </h2>
-              <p>Country: {{item.Country}}</p>
-            </ion-item>
-            <img [src]="item.image || '/assets/imgs/M1.png'" width="120" height="220">
-            <div class ="spacing" padding>
-                <p>{{item.Description}}</p>
-              </div>
-            <ion-item detail-push navPush="RequestEmployeePage" [navParams]="{item: item}">
-
-              <button ion-button class="btn" block>DETAILS</button>
-            </ion-item>
-          </ion-card>
-
-
-
+  <ion-list>
+    <ion-item *ngFor="let item of employeelist$ | async" text-wrap>
+      <ion-card>
+        <ion-item>
+          <ion-avatar item-start>
+            <ion-img [src]="item.image || '/assets/imgs/M1.png'"></ion-img>
+          </ion-avatar>
+          <h2>{{item.FullName }} </h2>
+          <p>Country: {{item.Country}}</p>
         </ion-item>
+        <div padding>
+          <ion-img class="spacing"  [src]="item.image || '/assets/imgs/M1.png'" width="100%" height="200"></ion-img>
+        </div>
+        <div class="spacing" padding>
+          <p>{{item.Description}}</p>
+        </div>
+        <ion-item detail-push navPush="RequestEmployeePage" [navParams]="{item: item}">
+
+          <button ion-button class="btn" block>DETAILS</button>
+        </ion-item>
+      </ion-card>
 
 
-      </ion-list>
+    </ion-item>
+
+
+  </ion-list>
 </ion-content>
