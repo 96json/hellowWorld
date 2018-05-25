@@ -50,10 +50,18 @@ export class EmployeeListService {
   requestEmployee(employee: employeeitem) { // solo ejecuta este metodo el usuario
     const id = moment().format();
     const {uid, email, displayName} = this.dataUser.toJSON();
-    const assisgObjectToApplicant = {...{applicant: {uid, email, displayName}}, ...employee,...{dateRequire:id}};
+    const assisgObjectToApplicant = {
+      ...{
+        applicant: {
+          uid,
+          email,
+          displayName
+        }
+      }, ...employee, ...{dateRequire: id}, ...{status: 'Pending'}
+    };
     const {recruiter} = employee;
     let addToOffice = this.db.object<employeeitem>(`list-request/${recruiter.uid}/${id}`).set(assisgObjectToApplicant);
-    let addToUser = this.db.object<employeeitem>(`list-request/${this.dataUser.uid}/${id}`).set({...employee,...{dateRequire:id}});
+    let addToUser = this.db.object<employeeitem>(`list-request/${this.dataUser.uid}/${id}`).set({...employee, ...{dateRequire: id}, ...{status: 'Pending'}});
 
     return Promise.all([addToOffice, addToUser])
   }
@@ -64,5 +72,11 @@ export class EmployeeListService {
     return this.db.list<any>(`list-request/${this.dataUser.uid}`).valueChanges()
   }
 
+  changesStatus(status, item) {
+    item.status = status;
+    const office = this.db.object<employeeitem>(`list-request/${this.dataUser.uid}/${item.dateRequire}`).update(item);
+    const user = this.db.object<employeeitem>(`list-request/${item.applicant.uid}/${item.dateRequire}`).update(item)
+    return Promise.all([office, user])
+  }
 
 }

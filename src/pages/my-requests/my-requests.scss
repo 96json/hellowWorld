@@ -1,7 +1,10 @@
 page-my-requests {
-    .title{
-        text-align: center ;
-        font-style:bold;
-    
-    }
+  .title {
+    text-align: center;
+    font-style: bold;
+
+  }
+  .disabled {
+    opacity: 0.5;
+  }
 }

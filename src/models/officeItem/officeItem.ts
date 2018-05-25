@@ -7,7 +7,8 @@ export interface officeitem {
   email:string;
   password:string ;
   rules:any;
-  recruiter:any
+  recruiter:any;
+  status:string;
 }
 
 
@@ -23,5 +24,6 @@ export interface employeeitem {
   Available:string;
   kids:string;
   uid:any;
-  recruiter:any
+  recruiter:any;
+  status:string;
 }
