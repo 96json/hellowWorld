@@ -37,6 +37,7 @@ export class UsersTabsPage {
       .subscribe(actions => {
         actions.forEach(action => {
           if (action.key === 'rules') {
+            this.employeeListService.typeCurrenteUser = action.payload.val();
             if (action.payload.val().write === true) {
               this.officesMenuRoot = EmployeesListPage;
               this.myRequestsRoot = MyRequestsPage;

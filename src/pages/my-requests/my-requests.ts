@@ -18,12 +18,16 @@ import {Observable} from "rxjs/Observable";
 export class MyRequestsPage {
   Message: string ;
   items :Observable<any>;
+  typeUser :any;
   constructor(public navCtrl: NavController, public navParams: NavParams,private mysms: SMS, public employeeServices : EmployeeListService) {
     this.items = this.employeeServices.getRequestList()
+    this.typeUser = this.employeeServices.typeCurrenteUser;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyRequestsPage');
+
+    console.log(this.typeUser)
 
   }
 

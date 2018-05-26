@@ -7,17 +7,24 @@ import * as moment from 'moment'
 
 @Injectable()
 export class EmployeeListService {
+  get typeCurrenteUser(): any {
+    return this._typeCurrenteUser;
+  }
+
+  set typeCurrenteUser(value: any) {
+    this._typeCurrenteUser = value;
+  }
   get numberPhone(): any {
     return this._numberPhone;
   }
 
   set numberPhone(value: any) {
-    console.log(value);
     this._numberPhone = value;
   }
 
   dataUser: any;
   private _numberPhone:any;
+  private _typeCurrenteUser:any;
   constructor(private db: AngularFireDatabase, private userInfoProvider: UserInfoProvider) {
     this.dataUser = this.userInfoProvider.getDataUser();
 
