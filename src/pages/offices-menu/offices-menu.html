@@ -18,8 +18,14 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-list>
+    <ion-searchbar
+      [(ngModel)]="myInput"
+      [showCancelButton]="shouldShowCancel"
+      (ionInput)="onInput()"
+      (ionCancel)="onCancel($event)">
+    </ion-searchbar>
     <ion-item *ngFor="let office of officelist$ | async" navPush="EmployeeOfOfficePage" [navParams]="{item: office}">
       <ion-avatar item-start>
         <img src="/assets/imgs/office.jpg">

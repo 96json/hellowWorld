@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 
 import {EmployeeListService} from '../../services/employees-list/employees-list.services';
 
@@ -22,16 +22,48 @@ import {AngularFireAuth} from "angularfire2/auth";
 export class OfficesMenuPage {
 
   officelist$: Observable<any[]>;
+  myInput: string = '';
+  loader: any;
 
 
-  constructor(public navCtrl: NavController, private employees: EmployeeListService, public navParams: NavParams, private afAuth: AngularFireAuth) {
+  constructor(public navCtrl: NavController, private employees: EmployeeListService, public navParams: NavParams,
+              private afAuth: AngularFireAuth, public loadingCtrl: LoadingController) {
+    this.loader = this.loadingCtrl.create({
+      content: "Please wait...",
+    });
+    this.loader.present();
+  }
+
+   ionViewDidLoad() {
+    console.log('ionViewDidLoad OfficesMenuPage');
+    this.officelist$ = this.employees.getListOffices();
+    this.loader.dismiss();
+  }
+
+  onInput() {
+
+    const elementToEval = {
+      FullName: this.myInput,
+      address: this.myInput
+    };
+    this.officelist$ = this.employees.getListOffices()
+      .map(items => {
+        return items.filter((item) => {
+          for (let key in elementToEval) {
+            let field = item[key];
+            if (typeof field == 'string' && field.toLowerCase().indexOf(elementToEval[key].toLowerCase()) >= 0) {
+              return item;
+            } else if (field == elementToEval[key]) {
+              return item;
+            }
+          }
+        })
+      })
+  }
+
+  onCancel(event) {
     this.officelist$ = this.employees.getListOffices()
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad OfficesMenuPage');
-  }
-
   logout() {
     this.afAuth.auth.signOut().then(() => {
     });
