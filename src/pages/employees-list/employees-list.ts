@@ -7,6 +7,7 @@ import {AngularFireAuth} from "angularfire2/auth";
 
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
+import {HomePage} from "../home/home";
 
 
 /**
@@ -78,7 +79,7 @@ export class EmployeesListPage {
 
   logout() {
     this.afAuth.auth.signOut().then(() => {
-      this.navCtrl.popToRoot()
+      this.app.getRootNav().setRoot(HomePage)
     });
 
   }

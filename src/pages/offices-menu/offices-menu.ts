@@ -1,10 +1,11 @@
 import {Component} from '@angular/core';
-import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
+import {App, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 
 import {EmployeeListService} from '../../services/employees-list/employees-list.services';
 
 import {Observable} from 'rxjs/Observable';
 import {AngularFireAuth} from "angularfire2/auth";
+import {HomePage} from "../home/home";
 
 /**
  * Generated class for the OfficesMenuPage page.
@@ -27,7 +28,7 @@ export class OfficesMenuPage {
 
 
   constructor(public navCtrl: NavController, private employees: EmployeeListService, public navParams: NavParams,
-              private afAuth: AngularFireAuth, public loadingCtrl: LoadingController) {
+              private afAuth: AngularFireAuth, public loadingCtrl: LoadingController,public app: App) {
     this.loader = this.loadingCtrl.create({
       content: "Please wait...",
     });
@@ -66,6 +67,7 @@ export class OfficesMenuPage {
   }
   logout() {
     this.afAuth.auth.signOut().then(() => {
+      this.app.getRootNav().setRoot(HomePage)
     });
   }
 }
