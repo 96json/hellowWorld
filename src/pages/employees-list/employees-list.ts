@@ -52,7 +52,7 @@ export class EmployeesListPage {
     const elementToEval = {
       FullName: this.myInput,
       Country: this.myInput
-    }
+    };
     this.employeelist$ = this.employees.getEmployeeList()
       .map(items => {
         return items.filter((item) => {
@@ -80,6 +80,14 @@ export class EmployeesListPage {
     this.afAuth.auth.signOut().then(() => {
     });
 
+  }
+
+  doRefresh(refresher){
+    console.log('Begin async operation', refresher);
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
   }
 
 }

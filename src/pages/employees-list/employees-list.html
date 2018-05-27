@@ -25,6 +25,9 @@
 
 
 <ion-content class="card-background-page">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-list>
     <ion-searchbar
       [(ngModel)]="myInput"
