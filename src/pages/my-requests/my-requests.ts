@@ -74,6 +74,14 @@ export class MyRequestsPage {
     console.log(item)
     //action to call
   }
+  SendSmsApplicatn({applicant}){
+    this.sendMessage('',applicant.numberPhone)
+  }
+
+  callApplicant(item){
+    console.log(item)
+    //action to call
+  }
 
 
   toast(){

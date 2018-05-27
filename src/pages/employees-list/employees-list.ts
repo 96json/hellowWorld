@@ -78,6 +78,7 @@ export class EmployeesListPage {
 
   logout() {
     this.afAuth.auth.signOut().then(() => {
+      this.navCtrl.popToRoot()
     });
 
   }
