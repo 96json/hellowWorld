@@ -32,10 +32,11 @@ export class EmployeeListService {
 
   getEmployeeList(uidOffice?) {
     if (uidOffice) {
-      return this.db.list<any>(`list-offices/${uidOffice.uid}/list-employer`).valueChanges()
+      return this.db.list<any>(`list-offices/${uidOffice.uid}/list-employer`,ref =>ref.orderByChild('FullName')).valueChanges()
     }
-    return this.db.list<any>(`list-offices/${this.dataUser.uid}/list-employer`).valueChanges()
+    return this.db.list<any>(`list-offices/${this.dataUser.uid}/list-employer`,ref =>ref.orderByChild('FullName')).valueChanges()
   }
+
 
   addEmployeeItem(employee: employeeitem) {
     employee.key = moment().format();
@@ -85,7 +86,7 @@ export class EmployeeListService {
 
   getRequestList() {
 
-    return this.db.list<any>(`list-request/${this.dataUser.uid}`).valueChanges()
+    return this.db.list<any>(`list-request/${this.dataUser.uid}`,ref =>ref.orderByChild('FullName')).valueChanges()
   }
 
   changesStatus(status, item) {

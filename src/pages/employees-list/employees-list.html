@@ -26,6 +26,12 @@
 
 <ion-content class="card-background-page">
   <ion-list>
+    <ion-searchbar
+      [(ngModel)]="myInput"
+      [showCancelButton]="shouldShowCancel"
+      (ionInput)="onInput()"
+      (ionCancel)="onCancel($event)">
+    </ion-searchbar>
     <ion-item *ngFor="let item of employeelist$ | async" text-wrap>
       <ion-card>
         <ion-item>

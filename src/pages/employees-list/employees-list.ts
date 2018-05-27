@@ -4,7 +4,9 @@ import {AddEmployeesPage} from '../add-employees/add-employees';
 import {Observable} from "rxjs/Observable";
 import {EmployeeListService} from "../../services/employees-list/employees-list.services";
 import {AngularFireAuth} from "angularfire2/auth";
-import {HomePage} from "../home/home";
+
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
 
 
 /**
@@ -22,13 +24,15 @@ import {HomePage} from "../home/home";
 export class EmployeesListPage {
 
   employeelist$: Observable<any>;
+  myInput: string = '';
 
-  constructor(public navCtrl: NavController, private employees: EmployeeListService, public navParams: NavParams,private afAuth: AngularFireAuth,public app: App) {
-    this.employeelist$ = this.employees.getEmployeeList();
+  constructor(public navCtrl: NavController, private employees: EmployeeListService, public navParams: NavParams, private afAuth: AngularFireAuth, public app: App) {
+    //
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EmployeesListPage');
+    this.employeelist$ = this.employees.getEmployeeList();
   }
 
   NavtoAddEmployees() {
@@ -37,8 +41,37 @@ export class EmployeesListPage {
 
   }
 
+  onInput() {
+
+    const elementToEval = {
+      FullName: this.myInput,
+      Country: this.myInput
+    }
+    this.employeelist$ = this.employees.getEmployeeList()
+      .map(items => {
+        return items.filter((item) => {
+          for (let key in elementToEval) {
+            let field = item[key];
+            if (typeof field == 'string' && field.toLowerCase().indexOf(elementToEval[key].toLowerCase()) >= 0) {
+              return item;
+            } else if (field == elementToEval[key]) {
+              return item;
+            }
+          }
+        })
+      })
+  }
+
+  shouldShowCancel() {
+
+  }
+
+  onCancel(event) {
+    this.employeelist$ = this.employees.getEmployeeList();
+  }
+
   logout() {
-    this.afAuth.auth.signOut().then(()=>{
+    this.afAuth.auth.signOut().then(() => {
     });
 
   }
