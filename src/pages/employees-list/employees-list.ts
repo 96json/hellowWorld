@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {App, NavController, NavParams} from 'ionic-angular';
+import {App, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {AddEmployeesPage} from '../add-employees/add-employees';
 import {Observable} from "rxjs/Observable";
 import {EmployeeListService} from "../../services/employees-list/employees-list.services";
@@ -25,14 +25,20 @@ export class EmployeesListPage {
 
   employeelist$: Observable<any>;
   myInput: string = '';
+  loader:any
 
-  constructor(public navCtrl: NavController, private employees: EmployeeListService, public navParams: NavParams, private afAuth: AngularFireAuth, public app: App) {
-    //
+  constructor(public navCtrl: NavController, private employees: EmployeeListService, public navParams: NavParams,
+              private afAuth: AngularFireAuth, public app: App,public loadingCtrl: LoadingController) {
+    this.loader = this.loadingCtrl.create({
+      content: "Please wait...",
+    });
+    this.loader.present();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EmployeesListPage');
     this.employeelist$ = this.employees.getEmployeeList();
+    this.loader.dismiss();
   }
 
   NavtoAddEmployees() {
