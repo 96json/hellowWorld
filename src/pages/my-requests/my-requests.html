@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-  <ion-list>
+  <ion-list *ngIf="typeUser.write">
     <ion-item *ngFor="let item of items | async">
       <ion-avatar item-start>
         <img [src]="item.image || '/assets/imgs/M1.png'">
@@ -23,14 +23,33 @@
       <p *ngIf="!typeUser.write">{{item.recruiter.email}}</p>
       <p *ngIf="typeUser.write">{{item.applicant.email}}</p>
       <p>{{item.status}}</p>
-      <div *ngIf="typeUser.write">
-        <button ion-button round color="primary" (click)="accept(item)">
-          Accept
-        </button>
-        <button ion-button round color="danger" (click)="reject(item)">
-          Reject
-        </button>
-      </div>
     </ion-item>
+  </ion-list>
+
+
+  <ion-list *ngIf="!typeUser.write">
+    <ion-item-sliding *ngFor="let item of items | async">
+      <ion-item>
+        <ion-avatar item-start>
+          <img [src]="item.image || '/assets/imgs/M1.png'">
+        </ion-avatar>
+        <h2>{{item.FullName}}</h2>
+        <p *ngIf="!typeUser.write">{{item.recruiter.email}}</p>
+        <p *ngIf="typeUser.write">{{item.applicant.email}}</p>
+        <p>{{item.status}}</p>
+      </ion-item>
+      <ion-item-options side="left">
+        <button ion-button color="primary" (click)="SendSms(item)">
+          <ion-icon name="text"></ion-icon>
+          Text
+        </button>
+      </ion-item-options>
+      <ion-item-options side="right">
+        <button ion-button color="light" (click)="call(item)">
+          <ion-icon name="call"></ion-icon>
+          Call
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>

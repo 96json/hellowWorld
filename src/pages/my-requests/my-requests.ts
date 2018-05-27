@@ -66,6 +66,14 @@ export class MyRequestsPage {
        this.toast()
      })
   }
+  SendSms({recruiter}){
+    this.sendMessage('',recruiter.numberPhone)
+  }
+
+  call(item){
+    console.log(item)
+    //action to call
+  }
 
 
   toast(){
