@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController} from 'ionic-angular';
+import {IonicPage, LoadingController, NavController} from 'ionic-angular';
 import {OfficesMenuPage} from '../offices-menu/offices-menu';
 import {PapersinfoPage} from '../papersinfo/papersinfo';
 import {MyRequestsPage} from '../my-requests/my-requests';
@@ -25,12 +25,17 @@ export class UsersTabsPage {
   papersinfoRoot = PapersinfoPage;
   myRequestsRoot = MyRequestsPage;
   officesMenuRoot;
+  loader:any
 
-  constructor(public navCtrl: NavController, private employeeListService: EmployeeListService) {
-
+  constructor(public navCtrl: NavController, private employeeListService: EmployeeListService,public loadingCtrl: LoadingController) {
+    this.loader = this.loadingCtrl.create({
+      content: "Please wait...",
+    });
+    this.loader.present();
   }
 
   ionViewDidLoad() {
+    this.loader.dismiss();
     console.log('ionViewDidLoad UsersTabsPage');
 
     this.employeeListService.currentUser().snapshotChanges()

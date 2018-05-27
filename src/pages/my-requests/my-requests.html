@@ -17,11 +17,11 @@
   <ion-list>
     <ion-item *ngFor="let item of items | async">
       <ion-avatar item-start>
-        <ion-img [src]="item.image || '/assets/imgs/M1.png'"></ion-img>
+        <img [src]="item.image || '/assets/imgs/M1.png'">
       </ion-avatar>
       <h2>{{item.FullName}}</h2>
-      <p *ngIf="!item.applicant">{{item.recruiter.email}}</p>
-      <p *ngIf="item.applicant">{{item.applicant.email}}</p>
+      <p *ngIf="!typeUser.write">{{item.recruiter.email}}</p>
+      <p *ngIf="typeUser.write">{{item.applicant.email}}</p>
       <p>{{item.status}}</p>
       <div *ngIf="typeUser.write">
         <button ion-button round color="primary" (click)="accept(item)">

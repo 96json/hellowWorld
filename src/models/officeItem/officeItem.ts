@@ -9,7 +9,8 @@ export interface officeitem {
   rules:any;
   recruiter:any;
   status:string;
-  write:any
+  write:any;
+  applicant:any;
 }
 
 
@@ -27,5 +28,6 @@ export interface employeeitem {
   uid:any;
   recruiter:any;
   status:string;
-  write:any
+  write:any;
+  applicant:any
 }

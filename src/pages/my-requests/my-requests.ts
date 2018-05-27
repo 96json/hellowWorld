@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, ModalController, NavController, NavParams, ToastController} from 'ionic-angular';
+import {IonicPage, LoadingController, NavController, NavParams, ToastController} from 'ionic-angular';
 import { SMS } from '@ionic-native/sms';
 import {EmployeeListService} from "../../services/employees-list/employees-list.services";
 import {Observable} from "rxjs/Observable";
@@ -20,14 +20,22 @@ export class MyRequestsPage {
   Message: string ;
   items :Observable<any>;
   typeUser :any;
+  loader:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,private mysms: SMS,
               public employeeServices : EmployeeListService,
-              private toastCtrl: ToastController) {
+              private toastCtrl: ToastController,
+              public loadingCtrl: LoadingController) {
     this.items = this.employeeServices.getRequestList();
     this.typeUser = this.employeeServices.typeCurrenteUser;
+    this.loader = this.loadingCtrl.create({
+      content: "Please wait...",
+    });
+    this.loader.present();
   }
 
+
   ionViewDidLoad() {
+    this.loader.dismiss();
     console.log('ionViewDidLoad MyRequestsPage');
 
   }
@@ -68,4 +76,5 @@ export class MyRequestsPage {
     });
     toast.present();
   }
+
 }
