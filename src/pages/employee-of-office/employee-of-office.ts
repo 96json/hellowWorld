@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 
 import {EmployeeListService} from '../../services/employees-list/employees-list.services';
 import {Observable} from 'rxjs/Observable';
@@ -25,15 +25,52 @@ interface employeeitem {
 
 export class EmployeeOfOfficePage {
   employeelist$: Observable<employeeitem[]>;
-
+  myInput: string = '';
+  loader:any;
   paramOfItem;
-  constructor(public navCtrl: NavController, private employeeService: EmployeeListService,public navParams: NavParams) {
+
+  constructor(public navCtrl: NavController, private employeeService: EmployeeListService,public navParams: NavParams,
+              public loadingCtrl: LoadingController) {
     this.paramOfItem = this.navParams.get('item');
-    this.employeelist$ = this.employeeService.getEmployeeList(this.paramOfItem)
+    this.loader = this.loadingCtrl.create({
+      content: "Please wait...",
+    });
+    this.loader.present();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OfficesMenuPage');
+    this.employeelist$ = this.employeeService.getEmployeeList(this.paramOfItem)
+    this.loader.dismiss();
+  }
+
+  onInput() {
+
+    const elementToEval = {
+      FullName: this.myInput,
+      Country: this.myInput
+    };
+    this.employeelist$ = this.employeeService.getEmployeeList(this.paramOfItem)
+      .map(items => {
+        return items.filter((item) => {
+          for (let key in elementToEval) {
+            let field = item[key];
+            if (typeof field == 'string' && field.toLowerCase().indexOf(elementToEval[key].toLowerCase()) >= 0) {
+              return item;
+            } else if (field == elementToEval[key]) {
+              return item;
+            }
+          }
+        })
+      })
+  }
+
+  shouldShowCancel() {
+
+  }
+
+  onCancel(event) {
+    this.employeelist$ = this.employeeService.getEmployeeList(this.paramOfItem)
   }
 
 
