@@ -3,6 +3,7 @@ import {IonicPage, LoadingController, NavController, NavParams, ToastController}
 import { SMS } from '@ionic-native/sms';
 import {EmployeeListService} from "../../services/employees-list/employees-list.services";
 import {Observable} from "rxjs/Observable";
+import {SmsPage} from '../sms/sms';
 
 /**
  * Generated class for the MyRequestsPage page.
@@ -41,19 +42,19 @@ export class MyRequestsPage {
   }
 
   accept(item){
-    this.Message = ` You request isaccepted`;
-    this.employeeServices.changesStatus('Accept',item)
+    this.Message = ` Your request is accepted`;
+    this.employeeServices.changesStatus('Accepted',item)
       .then(()=>{
         //here add method send sms
-        this.sendMessage(this.Message,item.phoneNumber)
+        this.sendMessage(this.Message,item.applicant.numberPhone)
       })
   }
 
   reject(item){
-    this.Message = ` You request is not accepted`;
-      this.employeeServices.changesStatus('Reject',item)
+    this.Message = ` Your request is not accepted`;
+      this.employeeServices.changesStatus('Rejected',item)
       .then(()=>{
-        this.sendMessage(this.Message,item.phoneNumber)
+        this.sendMessage(this.Message,item.applicant.numberPhone)
       })
 
 
@@ -75,7 +76,8 @@ export class MyRequestsPage {
     //action to call
   }
   SendSmsApplicatn({applicant}){
-    this.sendMessage('',applicant.numberPhone)
+    this.navCtrl.setRoot(SmsPage,{item : applicant.numberPhone});
+  //  this.sendMessage('',applicant.numberPhone)
   }
 
   callApplicant(item){
@@ -86,7 +88,7 @@ export class MyRequestsPage {
 
   toast(){
     let toast = this.toastCtrl.create({
-      message: 'Message send with successful ',
+      message: 'Message send  successfully ',
       duration: 3000,
       position: 'top'
     });

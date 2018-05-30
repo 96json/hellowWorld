@@ -17,13 +17,13 @@
   <ion-list *ngIf="typeUser.write">
     <ion-item-sliding *ngFor="let item of items | async">
     <ion-item >
-      <ion-avatar item-start>
+      <ion-thumbnail item-start>
         <img [src]="item.image || '/assets/imgs/M1.png'">
-      </ion-avatar>
+      </ion-thumbnail>
       <h2>{{item.FullName}}</h2>
       <p *ngIf="!typeUser.write">{{item.recruiter.email}}</p>
       <p *ngIf="typeUser.write">{{item.applicant.email}}</p>
-      <p>{{item.status}}</p>
+      <p>status: {{item.status}}</p>
       <button ion-button round (click)="accept(item)">
         Accept
       </button>
@@ -50,13 +50,13 @@
   <ion-list *ngIf="!typeUser.write">
     <ion-item-sliding *ngFor="let item of items | async">
       <ion-item>
-        <ion-avatar item-start>
+        <ion-thumbnail item-start>
           <img [src]="item.image || '/assets/imgs/M1.png'">
-        </ion-avatar>
+        </ion-thumbnail>
         <h2>{{item.FullName}}</h2>
         <p *ngIf="!typeUser.write">{{item.recruiter.email}}</p>
         <p *ngIf="typeUser.write">{{item.applicant.email}}</p>
-        <p>{{item.status}}</p>
+        <p>status: {{item.status}}</p>
       </ion-item>
       <ion-item-options side="left">
         <button ion-button color="primary" (click)="SendSms(item)">

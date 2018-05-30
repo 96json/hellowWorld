@@ -63,7 +63,7 @@ export class EmployeeListService {
     return this.db.list<any>(`list-offices`).valueChanges()
   }
 
-  requestEmployee(employee: employeeitem) { // solo ejecuta este metodo el usuario
+  requestEmployee(employee: employeeitem) { 
     const id = moment().format();
     const {uid, email, displayName} = this.dataUser.toJSON();
     const assisgObjectToApplicant = {
